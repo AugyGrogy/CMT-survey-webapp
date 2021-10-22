@@ -18,9 +18,7 @@ pr:
     - releases/*
     - release-hotfixes/*
     - master
-variables:  
-  - group: Devops_VariableGroup
-  - group: Devops_GitPipelinesVariables
+variables:
   - name: BuildConfiguration
     value: 'Release'
 
