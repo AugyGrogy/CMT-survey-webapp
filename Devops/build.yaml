@@ -1,0 +1,72 @@
+trigger:
+  branches:
+    include:
+    - releases/*
+    - master
+    exclude:
+    - release/*
+    - features/*
+    - hotfixes/*
+    - release-hotfixes/*
+pr:
+  branches:
+    include:
+    - features/*
+    - hotfixes/*
+    exclude:
+    - release/*
+    - releases/*
+    - release-hotfixes/*
+    - master
+variables:  
+  - group: Devops_VariableGroup
+  - group: Devops_GitPipelinesVariables
+  - name: BuildConfiguration
+    value: 'Release'
+
+stages:
+- stage: 'Stage_CreateArtifact'
+  displayName: 'Create Artifact'
+  jobs:
+  - job: 'Create_Artifacts_Job'
+    pool:
+      name: Azure Pipelines
+      vmImage: 'ubuntu-18.04'
+      
+    steps:
+    - checkout: self
+      persistCredentials: "true"     
+
+    - task: DotNetCoreCLI@2
+      displayName: restore
+      inputs:
+        command: restore
+        projects: '**/*.fsproj'
+    
+    - task: DotNetCoreCLI@2
+      displayName: build
+      inputs:
+        projects: '**/*.fsproj'
+        arguments: '--configuration $(BuildConfiguration)'
+        
+    - task: DotNetCoreCLI@2
+      displayName: publish
+      inputs:
+        command: publish
+        publishWebProjects: false
+        projects: '**/*.fsproj'
+        arguments: '-c $(BuildConfiguration) -o $(Build.ArtifactStagingDirectory) --no-build'    
+    
+    # Copy Arm Template Files
+    - task: CopyFiles@2
+      displayName: 'Copy ArmTemplates'
+      inputs:
+        SourceFolder: 'Devops'
+        TargetFolder: '$(build.artifactstagingdirectory)/ArmTemplates'
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifacts'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'

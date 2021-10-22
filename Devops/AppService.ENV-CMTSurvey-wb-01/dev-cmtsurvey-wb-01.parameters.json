@@ -1,0 +1,26 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment":{
+      "value": {
+        "Environment": "DEV"
+      }
+    },
+    "appservice_name": {
+      "value": "dev-cmtsurvey-wb-01"
+    },    
+    "serverfarms_appplan_name": {
+      "value": "dev-cmtsurvey-asp-01"
+    },
+    "serverfarms_appplan_sku": {
+      "value": {
+        "name": "B1",
+        "tier": "Basic",
+        "size": "B1",
+        "family": "B",
+        "capacity": 1
+      }
+    }    
+  }
+}

@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="question-form">
+    <form name="quesion-form">
+        <p>Question: </p> <!--Question Field-->
+        <input type="text" name="question" style="width:500px;height:300px;font-size:16pt;" required />
+        <p>Question Type: </p> <!--Choose question type-->
+        <select name="question-type" id="question-type" required>
+            <option value="" selected>Select Option</option>
+            <option value="TF">True/False</option>
+            <option value="KR">Knowledge Range</option>
+            <option value="MC">Multiple Choice</option>
+            <option value="TB">Text Box</option>
+        </select>
+        <p>Answers: </p>
+        <input type="text" name="question" required />
+        <p>
+            <button name="add-answer">Add Additional Answer</button> <!--Adds a new field to input extra answers-->
+        </p>
+    </form>
+</div>
