@@ -28,6 +28,16 @@ namespace SeniorProject.Controllers
             return View();
         }
 
+        public IActionResult AddEmails()
+        {
+            return View();
+        }
+
+        public IActionResult SurveyMgmt()
+        {
+            return View();
+        }
+
         public IActionResult AddQuestion()
         {
             return View();
