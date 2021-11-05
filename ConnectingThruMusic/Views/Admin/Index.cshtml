@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<h1>Hello, Admin!</h1>
+<br />
+<div class="grid-container">
+
+    <div class="grid-child-card">
+        <div class="card" style="width: 13rem;">
+            <img class="card-img-top" src="~/images/UserGroup.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Staff Members</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Mike Bruce</li>
+                <li class="list-group-item">Tom Philp</li>
+                <li class="list-group-item">Robert Dan</li>
+
+            </ul>
+            <div class="card-body">
+                <a asp-controller="Staff" asp-action="List">See More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-child-carousel">
+        <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a asp-area="" asp-controller="Admin" asp-action="SurveyAnalytics">
+                        <img class="d-block w-100" src="~/images/parentSurvey.png" alt="First slide">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a asp-area="" asp-controller="Admin" asp-action="SurveyAnalytics">
+
+                        <img class="d-block w-100" src="~/images/staffResults.png" alt="Second slide">
+                   </a>
+                </div>
+                <div class="carousel-item">
+                    <a asp-area="" asp-controller="Admin" asp-action="SurveyAnalytics">
+
+                        <img class="d-block w-100" src="~/images/CombinedResult.png" alt="Third slide">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-child-secondcard">
+        <div class="card" style="width: 16rem;">
+            <img class="card-img-top" src="~/images/Calendar.png" alt="Card image cap">
+
+            <div class="card-body">
+                <h5 class="card-title">Upcoming Surveys Dates</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">November 07</li>
+                <li class="list-group-item">January 14</li>
+                <li class="list-group-item">March 06</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
