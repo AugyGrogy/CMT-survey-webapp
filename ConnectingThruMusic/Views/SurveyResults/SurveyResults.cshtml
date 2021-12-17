@@ -1,0 +1,163 @@
+﻿
+@model List<SurveyResults>
+@{
+    ViewBag.Title = "Survey Results";
+}
+<style>
+table, th, td {
+  border: 1px solid black;
+  min-width: 30px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: lightgrey;
+}
+</style>
+<h1>Survey Results</h1>
+
+<div>
+<h2>Instructor</h2>
+<table>
+    <tr>
+                    <th>
+                        Instructor ID
+                    </th>
+                    <th>
+                        Parent ID
+                    </th>
+                    <th>
+                        Question ID
+                    </th>
+                    <th>
+                        Question Type
+                    </th>
+                    <th>
+                        Answer ID
+                    </th>
+                    <th>
+                        Answer
+                    </th>
+                    <th>
+                        Group ID
+                    </th>
+                    <th>
+                        Quarter ID
+                    </th>
+                </tr>
+
+@foreach (var results in Model)
+{
+    if (@results.instructorID != 0)
+    {
+
+
+                <tr>
+                    <td>
+                        @results.instructorID
+                    </td>
+                    <td>
+                        @results.parentID
+                    </td>
+                    <td>
+                        @results.QuestionID
+                    </td>
+                    <td>
+                        @results.type
+                    </td>
+                    <td>
+                        @results.answerID
+                    </td>
+                    <td>
+                        @results.answer
+                    </td>
+                    <td>
+                        @results.groupID
+                    </td>
+                    <td>
+                        @results.quarterID
+                    </td>
+                </tr>
+    }
+}
+            </table>
+        </div>
+ <div>
+<h2>Parent</h2>
+<table>
+    <tr>
+                    <th>
+                        Instructor ID
+                    </th>
+                    <th>
+                        Parent ID
+                    </th>
+                    <th>
+                        Question ID
+                    </th>
+                    <th>
+                        Question Type
+                    </th>
+                    <th>
+                        Answer ID
+                    </th>
+                    <th>
+                        Answer
+                    </th>
+                    <th>
+                        Group ID
+                    </th>
+                    <th>
+                        Quarter ID
+                    </th>
+                </tr>
+    @foreach (var results in Model)
+    {
+        if (@results.parentID != 0)
+        {
+                    <tr>
+                        <td>
+                            @results.instructorID
+                        </td>
+                        <td>
+                            @results.parentID
+                        </td>
+                        <td>
+                            @results.QuestionID
+                        </td>
+                        <td>
+                            @results.type
+                        </td>
+                        <td>
+                            @results.answerID
+                        </td>
+                        <td>
+                            @results.answer
+                        </td>
+                        <td>
+                            @results.groupID
+                        </td>
+                        <td>
+                            @results.quarterID
+                        </td>
+                    </tr>
+
+        }
+    }
+        </tr>
+    </div>
+ </table>
+ <br />
+ <table>
+    <tr>
+        <div style="align-content:center">
+            @using (Html.BeginForm("Export", "SurveyResultsController", FormMethod.Post))
+    {
+        <button class="btn btn-primary" style="text-align:center" value="Export">Download Results</button>
+    }
+    
+    </div>
+    </tr>
+ </table>
+
+</div>
+<br />
+    
