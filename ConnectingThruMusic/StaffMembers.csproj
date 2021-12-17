@@ -4,27 +4,4 @@
     <TargetFramework>net6.0</TargetFramework>
     <StartupObject></StartupObject>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Models\" />
-    <None Remove="Views\Staff\" />
-    <None Remove="Views\Roles\" />
-    <None Remove="Views\Shared\" />
-    <None Remove="Views\StartQuiz\" />
-    <None Remove="Views\Signin\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Staff\" />
-    <Folder Include="wwwroot\images\" />
-    <Folder Include="Views\Roles\" />
-    <Folder Include="Views\Shared\" />
-    <Folder Include="Views\StaffStartSurvey\" />
-    <Folder Include="Views\Signin\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="wwwroot\images\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.0" />
-  </ItemGroup>
 </Project>
