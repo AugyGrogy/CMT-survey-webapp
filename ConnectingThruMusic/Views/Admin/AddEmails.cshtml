@@ -28,12 +28,15 @@
 
 <form name="email-form" style="margin: 0 auto; width: 500px; padding: 0; border: 1px solid #CCC; border-radius: 1em;" class="text-center">
 
-    <label for="Recipent">Type of Email:</label><br />
-    <select name="Recipent" id="Recipent">
-        <option value="Select" selected="selected" disabled="disabled" required>Parent or Instructor</option>
-        <option value="Parent">Parent</option>
-        <option value="Instructor">Instructor</option>
-    </select>
+    <label for="recipent">Type of Email:</label><br />
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <label class="form-check-label" for="inlineRadio1">Parent</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <label class="form-check-label" for="inlineRadio2">Instructor</label>
+    </div>
 
     <br /><br />
 
