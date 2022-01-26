@@ -7,7 +7,7 @@ using StaffMembers.Models;
 
 
 
-namespace StaffMembers.Controllers
+namespace StaffMembers
 {
     public class RolesController : Controller
     {
