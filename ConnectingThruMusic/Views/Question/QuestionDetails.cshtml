@@ -1,0 +1,35 @@
+﻿@page
+@model StaffMembers.Questions
+@{
+}
+@{
+    ViewData["Title"] = "QuestionDetails";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestionId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestionType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EffectiveDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ExpirationDate)
+        </dt>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditQuestion" asp-route-id="@Model.QuestionId">Edit</a> |
+    <a asp-action="QuestionIndex">Back to List</a>
+</div>

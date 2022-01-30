@@ -12,7 +12,7 @@ namespace StaffMembers.Controllers
     {
         public IActionResult List()
         {
-            List<Staff> staffs = Database.GetStaff();
+            List<StaffMembers.Models.Staff> staffs = Database.GetStaff();
             return View(staffs);
 
         }

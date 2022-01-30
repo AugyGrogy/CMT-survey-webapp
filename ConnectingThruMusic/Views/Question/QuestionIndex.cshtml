@@ -1,0 +1,56 @@
+﻿@model IEnumerable<StaffMembers.Questions>
+
+@{
+    ViewData["Title"] = "QuestionIndex";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width = device-width" />
+    <title>Question Management</title>
+</head>
+<body>
+
+    <p>
+        <a asp-action="AddQuestion">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuestionText)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.QuestionType)
+                </th>
+            </tr>
+            <tr>
+                <th>Question</th>
+
+                <th>Question Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionText)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionType)
+                    </td>
+                    <td>
+                        <a asp-action="EditQuestion" asp-route-id="@item.QuestionId">Edit</a>
+                        <a asp-action="QuestionDetails" asp-route-id="@item.QuestionId">Details</a>
+                        <a asp-action="DeleteQuestion" asp-route-id="@item.QuestionId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
