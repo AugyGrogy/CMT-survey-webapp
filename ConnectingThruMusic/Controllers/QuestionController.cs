@@ -8,55 +8,136 @@ using Microsoft.EntityFrameworkCore;
 
 namespace StaffMembers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class QuestionController : ControllerBase
+    public class QuestionController : Controller
     {
-        private IQuestionRepository _questionrepository;
+        private readonly ctmsurveyContext _context;
 
-        public QuestionController(IQuestionRepository questionrepository)
+        public QuestionController(ctmsurveyContext context)
         {
-            _questionrepository = questionrepository;
+            _context = context;
+        }
+        
+        // Get: Questions
+        public async Task<IActionResult> QuestionIndex()
+        {
+            return View(await _context.Questions.ToListAsync());
         }
 
+        //Get: Questions/QuestionDetails
+        public async Task<IActionResult> QuestionDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var question = await _context.Questions.FirstOrDefaultAsync(m => m.QuestionId == id);
+            if (question == null)
+            {
+                return NotFound();
+            }
+            return View(question);
+        }
+
+        // Get: Questions/AddQuestion
+        public IActionResult AddQuestion()
+        {
+            return View();
+        }
+
+        // Post: Questions/AddQuestion
         [HttpPost]
-        [Route("Create")]
-        public async Task<ActionResult> create([FromBody] Question question)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddQuestion([Bind("QuestionId, QuestionType, EffectiveDate, ExpirationDate, QuestionText")] Questions question)
         {
-            int qid = await _questionrepository.Create(question);
-            return Ok(qid);
+            if (ModelState.IsValid)
+            {
+                _context.Add(question);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(QuestionIndex));
+            }
+            return View(question);
         }
 
-        [HttpGet]
-        [Route("GetAll")]
-        public async Task<ActionResult> GetAll()
+        // Get: Question/Edit
+        public async Task<IActionResult> EditQuestion(int? id)
         {
-            var questions = await _questionrepository.GetAll();
-            return Ok(questions);
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var question = await _context.Questions.FindAsync(id);
+            if (question == null)
+            {
+                return NotFound();
+            }
+            return View(question);
         }
 
-        [HttpGet]
-        [Route("GetBYID/{id}")]
-        public async Task<ActionResult> GetByID(int id)
+        // Post: EditQuestions/Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditQuestion(int id, [Bind("QuestionId, QuestionType, EffectiveDate, ExpirationDate, QuestionText")] Questions question)
         {
-            var question = await _questionrepository.GetById(id);
-            return Ok(question);
+            if (id != question.QuestionId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(question);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!QuestionExists(question.QuestionId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(QuestionIndex));
+            }
+            return View(question);
         }
 
-        [HttpPut]
-        [Route("Update/{id}")]
-        public async Task<IActionResult> Update(int id, Question question)
+        // Get: Questions/Delete
+        public async Task<IActionResult> DeleteQuestion (int? id)
         {
-            string resp = await _questionrepository.Update(id, question);
-            return Ok(resp);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var question = await _context.Questions.FirstOrDefaultAsync(m => m.QuestionId == id);
+            
+            if (question == null)
+            {
+                return NotFound();
+            }
+
+            return View(question);
         }
 
-        [HttpDelete]
-        [Route("Delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        // Post: Quesitons/Delete
+        [HttpPost, ActionName("DeleteQuestion")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var resp = await _questionrepository.Delete(id);
-            return Ok(resp);
+            var question = await _context.Questions.FirstOrDefaultAsync(m => m.QuestionId == id);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(QuestionIndex));
+        }
+
+        private bool QuestionExists(int id)
+        {
+            return _context.Questions.Any(e => e.QuestionId == id);
         }
     }
 }

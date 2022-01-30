@@ -7,9 +7,10 @@ using System.Collections.Generic;
 
 namespace StaffMembers
 {
-    public partial class QuestionType
+    public partial class InstructorSurveyAnswer
     {
-        public int QuestionType1 { get; set; }
-        public string QuestionDescription { get; set; }
+        public int QuestionId { get; set; }
+        public int InstructorId { get; set; }
+        public int AnswerId { get; set; }
     }
 }

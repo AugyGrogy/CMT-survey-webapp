@@ -7,9 +7,12 @@ using System.Collections.Generic;
 
 namespace StaffMembers
 {
-    public partial class QuestionType
+    public partial class Questions
     {
-        public int QuestionType1 { get; set; }
-        public string QuestionDescription { get; set; }
+        public int QuestionId { get; set; }
+        public int QuestionType { get; set; }
+        public DateTime? EffectiveDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
+        public string QuestionText { get; set; }
     }
 }

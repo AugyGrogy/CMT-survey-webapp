@@ -25,10 +25,10 @@ namespace StaffMembers
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<QuestionDBContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                    ef => ef.MigrationsAssembly(typeof(QuestionDBContext).Assembly.FullName)));
-            services.AddScoped<IQuestionDBContext>(provider => provider.GetService<QuestionDBContext>());
+            services.AddDbContext<ctmsurveyContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<ctmsurveyContext>();
 
             services.AddControllersWithViews();
         }

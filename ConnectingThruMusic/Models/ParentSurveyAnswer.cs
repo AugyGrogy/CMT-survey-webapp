@@ -7,9 +7,10 @@ using System.Collections.Generic;
 
 namespace StaffMembers
 {
-    public partial class QuestionType
+    public partial class ParentSurveyAnswer
     {
-        public int QuestionType1 { get; set; }
-        public string QuestionDescription { get; set; }
+        public int QuestionId { get; set; }
+        public int ParentId { get; set; }
+        public int AnswerId { get; set; }
     }
 }
