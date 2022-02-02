@@ -89,10 +89,15 @@ namespace StaffMembers.Migrations
                 columns: table => new
                 {
                     questionID = table.Column<int>(nullable: false),
-                    questionType = table.Column<int>(nullable: false),
+                    questionText = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
+                    questionType = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    AnswerA = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
+                    AnswerB = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
+                    AnswerC = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
+                    AnswerD = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
+                    AnswerE = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
                     effectiveDate = table.Column<DateTime>(type: "date", nullable: true),
                     expirationDate = table.Column<DateTime>(type: "date", nullable: true),
-                    questionText = table.Column<string>(unicode: false, maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {

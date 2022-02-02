@@ -1,10 +1,5 @@
 ﻿@page
 @model StaffMembers.Questions
-@{
-}
-@{
-    ViewData["Title"] = "QuestionDetails";
-}
 
 <h1>Details</h1>
 
@@ -12,24 +7,44 @@
     <h4>Question</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.QuestionId)
-        </dt>
+        <dd class="col-sm-2">
+            Question
+        </dd>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.QuestionText)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.QuestionType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EffectiveDate)
+        <dd class="col-sm-2">
+            Answer 1
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ExpirationDate)
-        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnswerA)
+        </dd>
+        <dd class="col-sm-2">
+            Answer 2
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnswerB)
+        </dd>
+        <dd class="col-sm-2">
+            Answer 3
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnswerC)
+        </dd>
+        <dd class="col-sm-2">
+            Answer 4
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnswerD)
+        </dd>
+        <dd class="col-sm-2">
+            Answer 5
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnswerE)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="EditQuestion" asp-route-id="@Model.QuestionId">Edit</a> |
     <a asp-action="QuestionIndex">Back to List</a>
 </div>
