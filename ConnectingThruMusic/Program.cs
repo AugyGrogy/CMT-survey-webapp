@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StaffMembers
 {
     public class Program
     {
         public static void Main(string[] args)
-        {
+        {            
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -22,5 +23,6 @@ namespace StaffMembers
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
     }
 }

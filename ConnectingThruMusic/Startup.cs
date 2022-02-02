@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace StaffMembers
 {
@@ -23,6 +25,11 @@ namespace StaffMembers
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ctmsurveyContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<ctmsurveyContext>();
+
             services.AddControllersWithViews();
         }
 
@@ -53,5 +60,13 @@ namespace StaffMembers
                     pattern: "{controller=Admin}/{action=Index}/{id?}");
             });
         }
+        private static IConfiguration GetConfiguration()
+        {
+            return new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables().Build();
+        }
+
     }
 }
