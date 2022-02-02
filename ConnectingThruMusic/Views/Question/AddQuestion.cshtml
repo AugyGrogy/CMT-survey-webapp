@@ -1,23 +1,63 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model StaffMembers.Questions
+
+@{
+    ViewData["Title"] = "Create";
 }
 
-<div>
-    <form name="quesion-form" style="margin: 0 auto; width: 500px; padding: 0; border: 1px solid #CCC; border-radius: 1em;" class="text-center">
-        <p>Question: </p> <!--Question Field-->
-        <input type="text" name="questionText" style="width:500px;height:300px;font-size:16pt;" required />
-        <p>Question Type: </p> <!--Choose question type-->
-        <select name="questionType" id="questionType" required>
-            <option disabled value="" selected>Select Option</option>
-            <option value="TF">True/False</option>
-            <option value="KR">Knowledge Range</option>
-            <option value="MC">Multiple Choice</option>
-            <option value="TB">Text Box</option>
-        </select>
-        <p>Answers: </p>
-        <input type="text" name="question" required />
-        <p>
-            <button name="add-answer">Add Additional Answer</button> <!--Adds a new field to input extra answers-->
-        </p>
-    </form>
+<h1>Create</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QuestionText" class="control-label"></label>
+                <input asp-for="QuestionText" class="form-control" />
+                <span asp-validation-for="QuestionText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuestionType" class="control-label"></label>
+                <input asp-for="QuestionType" class="form-control" />
+                <span asp-validation-for="QuestionType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerA" class="control-label"></label>
+                <input asp-for="AnswerA" class="form-control" />
+                <span asp-validation-for="AnswerA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerB" class="control-label"></label>
+                <input asp-for="AnswerB" class="form-control" />
+                <span asp-validation-for="AnswerB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerC" class="control-label"></label>
+                <input asp-for="AnswerC" class="form-control" />
+                <span asp-validation-for="AnswerC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerD" class="control-label"></label>
+                <input asp-for="AnswerD" class="form-control" />
+                <span asp-validation-for="AnswerD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerE" class="control-label"></label>
+                <input asp-for="AnswerE" class="form-control" />
+                <span asp-validation-for="AnswerE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
+
+<div>
+    <a asp-action="QuestionIndex">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

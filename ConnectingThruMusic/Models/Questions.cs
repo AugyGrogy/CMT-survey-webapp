@@ -10,9 +10,15 @@ namespace StaffMembers
     public partial class Questions
     {
         public int QuestionId { get; set; }
-        public int QuestionType { get; set; }
+        public string QuestionText { get; set; }
+        public string QuestionType { get; set; }
+        public string AnswerA { get; set; }
+        public string AnswerB { get; set; }
+        public string AnswerC { get; set; }
+        public string AnswerD { get; set; }
+        public string AnswerE { get; set; }
         public DateTime? EffectiveDate { get; set; }
         public DateTime? ExpirationDate { get; set; }
-        public string QuestionText { get; set; }
+        
     }
 }

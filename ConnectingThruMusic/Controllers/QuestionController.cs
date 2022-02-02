@@ -32,7 +32,7 @@ namespace StaffMembers
             }
 
             var question = await _context.Questions.FirstOrDefaultAsync(m => m.QuestionId == id);
-            if (question == null)
+            if(question == null)
             {
                 return NotFound();
             }
@@ -48,7 +48,7 @@ namespace StaffMembers
         // Post: Questions/AddQuestion
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddQuestion([Bind("QuestionId, QuestionType, EffectiveDate, ExpirationDate, QuestionText")] Questions question)
+        public async Task<IActionResult> AddQuestion([Bind("QuestionId, QuestionText, QuestionType, AnswerA, AnswerB, AnswerC, AnswerD, AnswerE, EffectiveDate, ExpirationDate")] Questions question)
         {
             if (ModelState.IsValid)
             {
@@ -67,17 +67,19 @@ namespace StaffMembers
                 return NotFound();
             }
             var question = await _context.Questions.FindAsync(id);
+
             if (question == null)
             {
                 return NotFound();
             }
+
             return View(question);
         }
 
         // Post: EditQuestions/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditQuestion(int id, [Bind("QuestionId, QuestionType, EffectiveDate, ExpirationDate, QuestionText")] Questions question)
+        public async Task<IActionResult> EditQuestion(int id, [Bind("QuestionId, QuestionText, QuestionType, AnswerA, AnswerB, AnswerC, AnswerD, AnswerE, EffectiveDate, ExpirationDate")] Questions question)
         {
             if (id != question.QuestionId)
             {
