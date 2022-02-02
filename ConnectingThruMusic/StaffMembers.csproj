@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220201221925_ChangedQuestionTable.cs" />
+    <Compile Remove="Migrations\20220201221925_ChangedQuestionTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Models\" />
     <None Remove="Views\Staff\" />
     <None Remove="Views\Roles\" />

@@ -146,6 +146,55 @@ namespace StaffMembers.Migrations
                     b.Property<int>("QuestionId")
                         .HasColumnName("questionID")
                         .HasColumnType("int");
+                    
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasColumnName("questionText")
+                        .HasColumnType("nvarchar(MAX)")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.Property<int>("QuestionType")
+                        .IsRequired()
+                        .HasColumnName("questionType")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("AnswerA")
+                        .HasColumnName("AnswerA")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.Property<string>("AnswerB")
+                        .HasColumnName("AnswerB")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.Property<string>("AnswerB")
+                        .HasColumnName("AnswerB")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.Property<string>("AnswerB")
+                        .HasColumnName("AnswerB")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.Property<string>("AnswerB")
+                        .HasColumnName("AnswerB")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.Property<string>("AnswerB")
+                        .HasColumnName("AnswerB")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
 
                     b.Property<DateTime?>("EffectiveDate")
                         .HasColumnName("effectiveDate")
@@ -155,16 +204,9 @@ namespace StaffMembers.Migrations
                         .HasColumnName("expirationDate")
                         .HasColumnType("date");
 
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnName("questionText")
-                        .HasColumnType("varchar(255)")
-                        .HasMaxLength(255)
-                        .IsUnicode(false);
+                    
 
-                    b.Property<int>("QuestionType")
-                        .HasColumnName("questionType")
-                        .HasColumnType("int");
+
 
                     b.HasKey("QuestionId");
 
