@@ -16,6 +16,9 @@
     <None Remove="Views\Shared\" />
     <None Remove="Views\StartQuiz\" />
     <None Remove="Views\Signin\" />
+	<None Remove="Views\Question\" />
+	<None Remove="Views\Admin\" />
+	<None Remove="Views\StaffStartSurvey\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Staff\" />
@@ -23,6 +26,10 @@
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\StaffStartSurvey\" />
     <Folder Include="Views\Signin\" />
+	<Folder Include="Views\Question\"/>
+	<Folder Include="Views\Admin\"/>
+	<Folder Include="Views\StaffStartSurvey\"/>
+	<Folder Include="Views\Shared\"/>
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\" />
