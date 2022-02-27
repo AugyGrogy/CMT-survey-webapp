@@ -132,9 +132,11 @@ namespace StaffMembers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var question = await _context.Questions.FirstOrDefaultAsync(m => m.QuestionId == id);
+            var question = await _context.Questions.FindAsync(id);
+            _context.Questions.Remove(question);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(QuestionIndex));
+
         }
 
         private bool QuestionExists(int id)
