@@ -141,8 +141,7 @@ namespace StaffMembers
                 entity.ToTable("QUESTIONS");
 
                 entity.Property(e => e.QuestionId)
-                    .HasColumnName("questionID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("questionID");
 
                 entity.Property(e => e.QuestionText)
                     .IsRequired()
