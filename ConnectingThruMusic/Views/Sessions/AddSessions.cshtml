@@ -1,0 +1,25 @@
+﻿@model StaffMembers.Sessions
+
+@{
+    ViewData["Title"] = "Add Sessions";
+}
+
+<form asp-action="AddSession" name="email-form" style="margin: 0 auto; width: 500px; padding: 0; border: 2px solid #CCC; border-radius: 1em; " class="text-center">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="sessionName" class="control-label"></label>
+        <input asp-for="sessionName" class="form-control" />
+        <span asp-validation-for="sessionName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

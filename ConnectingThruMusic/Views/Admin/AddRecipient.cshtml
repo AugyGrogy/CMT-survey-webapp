@@ -2,7 +2,7 @@
 
 @{
 
-    ViewData["Title"] = "Add Emails";
+    ViewData["Title"] = "Add Recipient";
 }
 
 
@@ -11,44 +11,55 @@
 <br />
 
 
-<form name="email-form" style="margin: 0 auto; width: 500px; padding: 0; border: 2px solid #CCC; border-radius: 1em; " class="text-center">
-
+<form asp-action="AddRecipient" name="email-form" style="margin: 0 auto; width: 500px; padding: 0; border: 2px solid #CCC; border-radius: 1em; " class="text-center">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <label for="recipent">Type of Email:</label><br />
 
 
+
     <div class="form-check form-check-inline">
-        <input asp-for="RecipientType" class="form-check-input" type="radio" name="inlineRadioOptions" id="parentOpt" value="parent" onclick="javascript:recipient()">
-        <label class="form-check-label" for="inlineRadio1">Parent</label>
+        @Html.RadioButtonFor(m => m.RecipientType, "Parent", new { onclick = "javascript:recipient(this)" }) Parent
+        <span asp-validation-for="RecipientType" class="text-danger"></span>
+
     </div>
     <div class="form-check form-check-inline">
-        <input asp-for="RecipientType" class="form-check-input" type="radio" name="inlineRadioOptions" id="instructorOpt" value="instructor" onclick="javascript:recipient()">
-        <label class="form-check-label" for="inlineRadio2">Instructor</label>
+
+        @Html.RadioButtonFor(m => m.RecipientType, "Instructor", new { onclick = "javascript:recipient(this)" }) Instructor
+        <span asp-validation-for="RecipientType" class="text-danger"></span>
+
     </div>
 
 
     <br /><br />
 
     <label asp-for="Name">Name:</label><br />
-    <input type="text" name="name" id="name" />
+    <input asp-for="Name" type="text" name="name" id="name" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+
 
     <br />
 
     <label asp-for="Email">Email:</label><br />
-    <input type="text" name="email" id="email" />
-
+    <input asp-for="Email" type="text" name="email" id="email" />
+    <span asp-validation-for="Email" class="text-danger"></span>
     <br />
 
-    <div class="parent" id="parent" style="visibility:hidden">
+    <div class="parent" id="parent" style="visibility:visible">
 
         <label asp-for="ChildName">Children Name:</label><br />
-        <input type="text" name="cname" id="cname" /><br />
+        <input asp-for="ChildName" type="text" name="cname" id="cname" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <br />
 
     </div>
 
-    <div class="instructor" id="instructor" style="visibility:hidden">
+    <br />
+
+    <div class="instructor" id="instructor" style="visibility:visible">
 
         <label asp-for="sessionID">Session:</label><br />
-        <select name="Session" id="Session">
+        <select asp-for="sessionID" name="Session" id="Session">
             <option value="Select" selected="selected" disabled="disabled" required>Sessions...</option>
             <option value="Spring 2022">Spring 2022</option>
             <option value="Spring Break 2022">Spring Break 2022</option>
@@ -60,10 +71,15 @@
             <option value="Summer Camp 2023">Summer Camp 2023</option>
             <option value="Fall 2023">Fall 2023</option>
             <option value="Intersession 2023">Intersession 2023</option>
-        </select><br />
+        </select>
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <br />
+        <a asp-controller="Sessions" asp-action="AddSessions" style="font-size:x-small">Add Sessions</a>
+        <br />
+
 
         <label asp-for="siteID">Sites:</label><br />
-        <select name="Location" id="Location">
+        <select asp-for="siteID" name="Location" id="Location">
             <option value="Select" selected="selected" disabled="disabled" required>Locations...</option>
             <option value="Alden Rd">Alden Rd</option>
             <option value="Angelwood">Angelwood</option>
@@ -78,9 +94,14 @@
             <option value="Palm Ave">Palm Ave</option>
             <option value="PP">PP</option>
             <option value="River Oaks">River Oaks</option>
-        </select><br /><br />
+        </select>
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <br />
+        <a asp-controller="Loactions" asp-action="Locations" style="font-size:x-small">Add Locations</a>
+        <br />
+        <br />
     </div>
-    <input type="submit" value="Create" class="btn btn-primary" />
+    <input type="submit" value=" Add " class="btn btn-primary" />
 
 
 </form>

@@ -32,11 +32,14 @@
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\StaffStartSurvey\" />
     <Folder Include="Views\Signin\" />
+
+
 	<Folder Include="Views\Question\" />
 	<Folder Include="Views\Admin\" />
 	<Folder Include="Views\StaffStartSurvey\" />
 	<Folder Include="Views\Shared\" />
 	<Folder Include="Views\Question\" />
+
 	<Folder Include="Views\StaffStartSurvey\" />
 	<Folder Include="Views\Shared\" />
   </ItemGroup>
