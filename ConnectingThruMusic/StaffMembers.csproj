@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20220201221925_ChangedQuestionTable.cs" />
     <Compile Remove="Migrations\20220201221925_ChangedQuestionTable.Designer.cs" />
+    <Compile Remove="Migrations\20220228161426_RecipientMigration.cs" />
+    <Compile Remove="Migrations\20220228161426_RecipientMigration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,10 +28,10 @@
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\StaffStartSurvey\" />
     <Folder Include="Views\Signin\" />
-	<Folder Include="Views\Question\"/>
-	<Folder Include="Views\Admin\"/>
-	<Folder Include="Views\StaffStartSurvey\"/>
-	<Folder Include="Views\Shared\"/>
+	<Folder Include="Views\Question\" />
+	<Folder Include="Views\Admin\" />
+	<Folder Include="Views\StaffStartSurvey\" />
+	<Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\" />
