@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using StaffMembers;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -27,6 +28,9 @@ namespace StaffMembers
         public virtual DbSet<QuestionType> QuestionType { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<Staff> Staff_Connected_To_Database { get; set; }
+        public virtual DbSet<Recipient> Recipient { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -229,6 +233,47 @@ namespace StaffMembers
                     .IsRequired()
                     .HasColumnName("staffRole")
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Recipient>(entity =>
+            {
+                entity.ToTable("RECIPIENT");
+
+                entity.Property(e => e.RecipientID)
+                    .HasColumnName("RecipientID");
+
+                entity.Property(e => e.RecipientType)
+                    .IsRequired()
+                    .HasColumnName("RecipientType")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("Name")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasColumnName("Email")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ChildName)
+                    .HasColumnName("ChildName")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.sessionID)
+                    .HasColumnName("sessionID")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.siteID)
+                    .HasColumnName("siteID")
+                    .HasMaxLength(255)
                     .IsUnicode(false);
             });
 

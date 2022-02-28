@@ -1,84 +1,94 @@
-﻿@{
+﻿@model StaffMembers.Recipient
+
+@{
+
     ViewData["Title"] = "Add Emails";
 }
-
-
-
-
-<!-- Hide parts of the form based on dropdown answer
-
-<script type="text/javascript">
-    // hide all the divs
-    $('div').hide();
-
-    $('#Recipent').change(function () {
-        var value = this.value;
-        $('div').hide()
-        $('#' + this.value).show();
-    });
-
-</script>
-
-    -->
 
 
 <h2 class="text-center">Add Emails</h2>
 
 <br />
 
-<form name="email-form" style="margin: 0 auto; width: 500px; padding: 0; border: 1px solid #CCC; border-radius: 1em;" class="text-center">
+
+<form name="email-form" style="margin: 0 auto; width: 500px; padding: 0; border: 2px solid #CCC; border-radius: 1em; " class="text-center">
 
     <label for="recipent">Type of Email:</label><br />
+
+
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <input asp-for="RecipientType" class="form-check-input" type="radio" name="inlineRadioOptions" id="parentOpt" value="parent" onclick="javascript:recipient()">
         <label class="form-check-label" for="inlineRadio1">Parent</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <input asp-for="RecipientType" class="form-check-input" type="radio" name="inlineRadioOptions" id="instructorOpt" value="instructor" onclick="javascript:recipient()">
         <label class="form-check-label" for="inlineRadio2">Instructor</label>
     </div>
 
+
     <br /><br />
 
-    <label for="name">Name:</label><br />
+    <label asp-for="Name">Name:</label><br />
     <input type="text" name="name" id="name" />
 
     <br />
 
-    <label for="email">Email:</label><br />
+    <label asp-for="Email">Email:</label><br />
     <input type="text" name="email" id="email" />
 
     <br />
 
-    <div class="parent" id="parent">
+    <div class="parent" id="parent" style="visibility:hidden">
 
-        <label for="cname">Children Name:</label><br />
+        <label asp-for="ChildName">Children Name:</label><br />
         <input type="text" name="cname" id="cname" /><br />
 
     </div>
 
-    <div class="instructor" id="instructor">
-        <label for="Location">Location:</label><br />
-        <select name="Location" id="Location">
-            <option value="Select" selected="selected" disabled="disabled" required>Locations...</option>
-            <option value="Beaches">Beaches</option>
-            <option value="Mayport">Mayport</option>
-            <option value="Ponte Vedra">Ponte Vedra</option>
-            <option value="Downtown">Downtown</option>
-        </select><br />
+    <div class="instructor" id="instructor" style="visibility:hidden">
 
-        <label for="Session">Session:</label><br />
+        <label asp-for="sessionID">Session:</label><br />
         <select name="Session" id="Session">
             <option value="Select" selected="selected" disabled="disabled" required>Sessions...</option>
-            <option value="Quarter1">1st Quarter</option>
-            <option value="Quarter2">2nd Quarter</option>
-            <option value="Quarter3">3rd Quarter</option>
-            <option value="Quarter4">4th Quarter</option>
+            <option value="Spring 2022">Spring 2022</option>
+            <option value="Spring Break 2022">Spring Break 2022</option>
+            <option value="Summer Camp 2022">Summer Camp 2022</option>
+            <option value="Fall 2022">Fall 2022</option>
+            <option value="Intersession 2022">Intersession 2022</option>
+            <option value="Spring 2023">Spring 2023</option>
+            <option value="Spring Break 2023">Spring Break 2023</option>
+            <option value="Summer Camp 2023">Summer Camp 2023</option>
+            <option value="Fall 2023">Fall 2023</option>
+            <option value="Intersession 2023">Intersession 2023</option>
+        </select><br />
+
+        <label asp-for="siteID">Sites:</label><br />
+        <select name="Location" id="Location">
+            <option value="Select" selected="selected" disabled="disabled" required>Locations...</option>
+            <option value="Alden Rd">Alden Rd</option>
+            <option value="Angelwood">Angelwood</option>
+            <option value="DLC N&L">DLC N&L</option>
+            <option value="DLC T&C">DLC T&C</option>
+            <option value="Mainspring">Mainspring</option>
+            <option value="MOE">MOE</option>
+            <option value="Mt Herman">Mt Herman</option>
+            <option value="NBE">NBE</option>
+            <option value="NFSSE">NFSSE</option>
+            <option value="Oak Hill">Oak Hill</option>
+            <option value="Palm Ave">Palm Ave</option>
+            <option value="PP">PP</option>
+            <option value="River Oaks">River Oaks</option>
         </select><br /><br />
     </div>
-
-    <button class="btn btn-success">Add Email</button>
+    <input type="submit" value="Create" class="btn btn-primary" />
 
 
 </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
 
