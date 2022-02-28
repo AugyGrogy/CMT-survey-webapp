@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StaffMembers;
 
 namespace StaffMembers.Migrations
 {
     [DbContext(typeof(ctmsurveyContext))]
-    partial class ctmsurveyContextModelSnapshot : ModelSnapshot
+    [Migration("20220228164954_RecipientMigration")]
+    partial class RecipientMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
