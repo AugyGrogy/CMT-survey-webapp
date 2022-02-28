@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StaffMembers.Controllers
+namespace StaffMembers
 {
     public class EmailController : Controller
     {
@@ -25,7 +25,7 @@ namespace StaffMembers.Controllers
             return View(await _context.Recipient.ToListAsync());
         }
 
-        // GET: Email/Details/5
+        // GET: Email/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,18 +33,17 @@ namespace StaffMembers.Controllers
                 return NotFound();
             }
 
-            var email = await _context.Recipient
-                .FirstOrDefaultAsync(m => m.RecipientID == id);
-            if (email == null)
+            var recipient = await _context.Recipient.FirstOrDefaultAsync(m => m.RecipientID == id);
+            if (recipient == null)
             {
                 return NotFound();
             }
 
-            return View(email);
+            return View(recipient);
         }
 
-        // GET: Emails/Create
-        public IActionResult Create()
+        // GET: Emails/AddRecipient
+        public IActionResult AddRecipient()
         {
             return View();
         }
@@ -54,7 +53,7 @@ namespace StaffMembers.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RecipientID,RecipientType,Name,Email,ChildName,sessionID,siteID")] Recipient recipient)
+        public async Task<IActionResult> AddRecipient([Bind("RecipientID,RecipientType,Name,Email,ChildName,sessionID,siteID")] Recipient recipient)
         {
             if (ModelState.IsValid)
             {
@@ -66,4 +65,5 @@ namespace StaffMembers.Controllers
         }
 
     }
+
 }
