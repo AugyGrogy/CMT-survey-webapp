@@ -32,6 +32,7 @@ namespace StaffMembers
                 .AddEntityFrameworkStores<ctmsurveyContext>();
 
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +50,6 @@ namespace StaffMembers
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();
@@ -60,8 +60,10 @@ namespace StaffMembers
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Admin}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
+
         private static IConfiguration GetConfiguration()
         {
             return new ConfigurationBuilder()
