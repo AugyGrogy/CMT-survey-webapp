@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using StaffMembers;
@@ -9,7 +10,7 @@ using StaffMembers;
 
 namespace StaffMembers
 {
-    public partial class ctmsurveyContext : DbContext
+    public partial class ctmsurveyContext : IdentityDbContext
     {
 /*        public ctmsurveyContext()
         {

@@ -206,4 +206,9 @@ body {
     text-align: center;
 }
 
+.img-fluid {
 
+    height: 23px;
+
+    width: 100px;
+}

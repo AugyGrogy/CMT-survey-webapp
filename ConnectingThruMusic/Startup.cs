@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using Microsoft.AspNetCore.Identity;
+using ConnectingThruMusicWebApp.Data;
 
 namespace StaffMembers
 {
@@ -30,7 +27,12 @@ namespace StaffMembers
 
             services.AddDbContext<ctmsurveyContext>();
 
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ctmsurveyContext>();
+
+            services.AddAuthentication();
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,13 +53,17 @@ namespace StaffMembers
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Admin}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
         private static IConfiguration GetConfiguration()
