@@ -29,7 +29,8 @@ namespace StaffMembers
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<Staff> Staff_Connected_To_Database { get; set; }
         public virtual DbSet<Recipient> Recipient { get; set; }
-        public virtual DbSet<Recipient> Sessions { get; set; }
+        public virtual DbSet<Sessions> Sessions { get; set; }
+        public virtual DbSet<Sites> Sites { get; set; }
 
 
 
@@ -280,9 +281,48 @@ namespace StaffMembers
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Sessions>(entity =>
+            {
+                entity.HasKey(e => e.sessionID);
+
+                entity.ToTable("SESSIONS");
+
+                entity.Property(e => e.sessionID)
+                    .HasColumnName("sessionID")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.sessionName)
+                    .HasColumnName("sessionName")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Sites>(entity =>
+            {
+                entity.HasKey(e => e.siteID);
+
+                entity.ToTable("SITES");
+
+                entity.Property(e => e.siteID)
+                    .HasColumnName("sessionID")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.siteName)
+                    .HasColumnName("sessionName")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+
             OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<StaffMembers.Sessions> Sessions_1 { get; set; }
+
+        public DbSet<StaffMembers.Sites> Sites_1 { get; set; }
     }
 }

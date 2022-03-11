@@ -55,11 +55,11 @@ namespace StaffMembers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddRecipient([Bind("RecipientID,RecipientType,Name,Email,ChildName,sessionID,siteID")] Recipient recipient)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) 
             {
                 _context.Add(recipient);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(("AddRecipient"));
             }
             return View(recipient);
         }

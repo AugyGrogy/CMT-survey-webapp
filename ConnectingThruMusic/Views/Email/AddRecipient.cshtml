@@ -74,13 +74,13 @@
         </select>
         <span asp-validation-for="Email" class="text-danger"></span>
         <br />
-        <a asp-controller="Sessions" asp-action="AddSessions" style="font-size:x-small">Add Sessions</a>
+        <a asp-controller="Sessions" asp-action="AddSession" style="font-size:x-small">Add Sessions</a>
         <br />
 
 
         <label asp-for="siteID">Sites:</label><br />
-        <select asp-for="siteID" name="Location" id="Location">
-            <option value="Select" selected="selected" disabled="disabled" required>Locations...</option>
+        <select asp-for="siteID" name="Site" id="Site">
+            <option value="Select" selected="selected" disabled="disabled" required>Sites...</option>
             <option value="Alden Rd">Alden Rd</option>
             <option value="Angelwood">Angelwood</option>
             <option value="DLC N&L">DLC N&L</option>
@@ -97,7 +97,7 @@
         </select>
         <span asp-validation-for="Email" class="text-danger"></span>
         <br />
-        <a asp-controller="Loactions" asp-action="Locations" style="font-size:x-small">Add Locations</a>
+        <a asp-controller="Sites" asp-action="AddSite" style="font-size:x-small">Add Sites</a>
         <br />
         <br />
     </div>
