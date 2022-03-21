@@ -15,6 +15,20 @@ namespace StaffMembers.Controllers
             List<SurveyResults> results = Database.GetResults();
             return View(results);
         }
+        public IActionResult AnalyticsResult()
+        {
+            List<SurveyResults> results = Database.GetResults();
+            return View(results);
+        }
+        public IActionResult SurveyAnalytics()
+        {
+            return View();
+        }
+
+        public void Export()
+        {
+
+        }
 
 
     }
