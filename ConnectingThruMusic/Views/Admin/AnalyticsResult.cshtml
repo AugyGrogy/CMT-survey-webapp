@@ -1,30 +1,107 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model List<SurveyResults>
 @{
+    ViewBag.Title = "Survey Results";
 }
+<head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
 
-<h2>Analytics</h2>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <img class="d-block w-100" src="~/images/graph1.png" alt="First slide">
-        </div>
-        <div class="col-lg-6">
-            <img class="d-block w-100" src="~/images/graphs2.png" alt="First slide">
-        </div>
-    </div>
-</div>
+<h1>Analytics</h1>
 
-<br />
+<h2>Parent</h2>
+<div id="parent1" style="width:100%; height:400px;"></div>
+<div id="parent2" style="width:100%; height:400px;"></div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <img class="d-block w-100" src="~/images/Piechart1.png" alt="First slide">
-        </div>
-        <div class="col-lg-6">
-            <img class="d-block w-100" src="~/images/piechart2.png" alt="First slide">
-        </div>
-    </div>
-</div>
+<h2>Instructor</h2>
+<div id="instructor2" style="width:100%; height:400px;"></div>
+<div id="instructor2" style="width:100%; height:400px;"></div>
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chart = Highcharts.chart('parent1', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Question 1'
+            },
+            xAxis: {
+                categories: ['A', 'B', 'C', 'D']
+            },
+            yAxis: {
+                title: {
+                    text: 'Chosen Answer Amount'
+                }
+            },
+            series: [{
+                data: [1, 2, 3, 4]
+            }]
+        });
+        const chart2 = Highcharts.chart('parent2', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Question 2'
+            },
+            xAxis: {
+                categories: ['A', 'B', 'C', 'D']
+            },
+            yAxis: {
+                title: {
+                    text: 'Chosen Answer Amount'
+                }
+            },
+            series: [{
+                data: [4, 3, 2, 1]
+            }]
+        });
+        const chart2 = Highcharts.chart('instructor1', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Question 2'
+            },
+            xAxis: {
+                categories: ['A', 'B', 'C', 'D']
+            },
+            yAxis: {
+                title: {
+                    text: 'Chosen Answer Amount'
+                }
+            },
+            series: [{
+                name: 'Parent',
+                data: [4, 3, 2, 1]
+            }]
+        });
+        const chart2 = Highcharts.chart('instructor2', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Question 2'
+            },
+            xAxis: {
+                categories: ['A', 'B', 'C', 'D']
+            },
+            yAxis: {
+                title: {
+                    text: 'Chosen Answer Amount'
+                }
+            },
+            series: [{
+                name: 'Parent',
+                data: [4, 3, 2, 1]
+            }]
+        });
+    });
+</script>

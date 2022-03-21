@@ -67,5 +67,183 @@ namespace StaffMembers.Models
             return staffs;
         }
 
+
+
+        public static List<SurveyResults> GetResults()
+        {
+            List<SurveyResults> results = new List<SurveyResults>
+            {
+                new SurveyResults
+                {
+                   QuestionID = 1,
+                   type = "mc",
+                   instructorID = 1,
+                   answerID = 1,
+                   answer = "A",
+                   groupID = 1,
+                   quarterID = 1
+                },
+
+                new SurveyResults
+                {
+                   QuestionID = 1,
+                   type = "mc",
+                   instructorID = 2,
+                   answerID = 1,
+                   answer = "B",
+                   groupID = 1,
+                   quarterID = 1
+                },
+
+                new SurveyResults
+                {
+                   QuestionID = 1,
+                   type = "mc",
+                   instructorID = 3,
+                   answerID = 1,
+                   answer = "C",
+                   groupID = 1,
+                   quarterID = 1
+                },
+
+                new SurveyResults
+                {
+                   QuestionID = 1,
+                   type = "mc",
+                   instructorID = 4,
+                   answerID = 1,
+                   answer = "D",
+                   groupID = 1,
+                   quarterID = 1
+                },
+
+                new SurveyResults
+                {
+                   QuestionID = 1,
+                   type = "mc",
+                   instructorID = 5,
+                   answerID = 1,
+                   answer = "A",
+                   groupID = 1,
+                   quarterID = 1
+                },
+
+                new SurveyResults
+                {
+                   QuestionID = 1,
+                   type = "mc",
+                   instructorID = 6,
+                   answerID = 1,
+                   answer = "A",
+                   groupID = 1,
+                   quarterID = 1
+                },
+
+                new SurveyResults
+                {
+                   QuestionID = 1,
+                   type = "mc",
+                   instructorID = 7,
+                   answerID = 1,
+                   answer = "A",
+                   groupID = 1,
+                   quarterID = 1
+                },
+
+                new SurveyResults
+                {
+                   QuestionID = 1,
+                   type = "mc",
+                   instructorID = 8,
+                   answerID = 1,
+                   answer = "C",
+                   groupID = 1,
+                   quarterID = 1
+                },
+                //parents
+                new SurveyResults
+                {
+                   QuestionID = 2,
+                   type = "mc",
+                   parentID = 1,
+                   answerID = 2,
+                   answer = "A",
+                   groupID = 1,
+                   quarterID = 1
+                },
+                new SurveyResults
+                {
+                   QuestionID = 2,
+                   type = "mc",
+                   parentID = 2,
+                   answerID = 2,
+                   answer = "B",
+                   groupID = 1,
+                   quarterID = 1
+                },
+                new SurveyResults
+                {
+                   QuestionID = 2,
+                   type = "mc",
+                   parentID = 3,
+                   answerID = 2,
+                   answer = "C",
+                   groupID = 1,
+                   quarterID = 1
+                },
+                new SurveyResults
+                {
+                   QuestionID = 2,
+                   type = "mc",
+                   parentID = 4,
+                   answerID = 2,
+                   answer = "D",
+                   groupID = 1,
+                   quarterID = 1
+                },
+                new SurveyResults
+                {
+                   QuestionID = 2,
+                   type = "mc",
+                   parentID = 5,
+                   answerID = 2,
+                   answer = "B",
+                   groupID = 1,
+                   quarterID = 1
+                },
+                new SurveyResults
+                {
+                   QuestionID = 2,
+                   type = "mc",
+                   parentID = 6,
+                   answerID = 2,
+                   answer = "B",
+                   groupID = 1,
+                   quarterID = 1
+                },
+                new SurveyResults
+                {
+                   QuestionID = 2,
+                   type = "mc",
+                   parentID = 7,
+                   answerID = 2,
+                   answer = "D",
+                   groupID = 1,
+                   quarterID = 1
+                },
+                new SurveyResults
+                {
+                   QuestionID = 2,
+                   type = "mc",
+                   parentID = 8,
+                   answerID = 2,
+                   answer = "D",
+                   groupID = 1,
+                   quarterID = 1
+                }
+
+            };
+            return results;
+        }
     }
 }

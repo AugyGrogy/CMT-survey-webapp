@@ -1,0 +1,198 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ ViewData["Title"] = "Analytics Results"; }
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<h1 style="text-align: center">Analytics</h1>
+
+<h2>Parent</h2>
+<div id="parent1" style="width:100%; height:400px;"></div>
+<div id="parent2" style="width:100%; height:400px;"></div>
+<br />
+@*<div id="buttonrow">
+        <button id="export-png">Export to PNG</button>
+        <button id="export-pdf">Export to PDF</button>
+    </div>*@
+<br />
+
+<h2>Instructor</h2>
+<div id="instructor1" style="width:100%; height:400px;"></div>
+<div id="instructor2" style="width:100%; height:400px;"></div>
+<br />
+<div id="buttonrow">
+    <button id="export-png">Export to PNG</button>
+    <button id="export-pdf">Export to PDF</button>
+</div>
+
+
+
+
+
+<script>
+    /**
+     * Create a global getSVG method that takes an array of charts as an
+     * argument
+     */
+    Highcharts.getSVG = function (charts) {
+        var svgArr = [],
+            top = 0,
+            width = 0;
+
+        Highcharts.each(charts, function (chart) {
+            var svg = chart.getSVG(),
+                // Get width/height of SVG for export
+                svgWidth = +svg.match(
+                    /^<svg[^>]*width\s*=\s*\"?(\d+)\"?[^>]*>/
+                )[1],
+                svgHeight = +svg.match(
+                    /^<svg[^>]*height\s*=\s*\"?(\d+)\"?[^>]*>/
+                )[1];
+
+            svg = svg.replace(
+                '<svg',
+                '<g transform="translate(' + width + ', 0 )" '
+            );
+            svg = svg.replace('</svg>', '</g>');
+
+            width += svgWidth;
+            top = Math.max(top, svgHeight);
+
+            svgArr.push(svg);
+        });
+
+        return '<svg height="' + top + '" width="' + width +
+            '" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
+            svgArr.join('') + '</svg>';
+    };
+    Highcharts.exportCharts = function (charts, options) {
+
+        // Merge the options
+        options = Highcharts.merge(Highcharts.getOptions().exporting, options);
+
+        // Post to export server
+        Highcharts.post(options.url, {
+            filename: options.filename || 'chart',
+            type: options.type,
+            width: options.width,
+            svg: Highcharts.getSVG(charts)
+        });
+    };
+    document.addEventListener('DOMContentLoaded', function () {
+        const chart = Highcharts.chart('parent1', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Question 1 Pie Chart'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <br>{point.percentage:.1f} %<br>total: {point.total}'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>:<br>{point.percentage:.1f} %<br>total: {point.total}',
+                    }
+                }
+            },
+            xAxis: {
+                categories: ['A', 'B', 'C', 'D']
+            },
+            yAxis: {
+                title: {
+                    text: 'Chosen Answer Amount'
+                }
+            },
+            series: [{
+                name: ['A', 'B', 'C', 'D'],
+                data: [{ name: 'A', y: 4 }, { name: 'B', y: 1 }, { name: 'C', y: 2 }, { name: 'D', y: 1 }]
+            }]
+        });
+        const chart2 = Highcharts.chart('parent2', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Question 1 Bar Chart'
+            },
+            xAxis: {
+                categories: ['A', 'B', 'C', 'D']
+            },
+            yAxis: {
+                title: {
+                    text: 'Chosen Answer Amount'
+                }
+            },
+            series: [{
+                name: ['Results'],
+                data: [4, 1, 2, 1]
+            }]
+        });
+        const chart3 = Highcharts.chart('instructor1', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Question 1'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <br>{point.percentage:.1f} %<br>total: {point.total}'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>:<br>{point.percentage:.1f} %<br>total: {point.total}',
+                    }
+                }
+            },
+            xAxis: {
+                categories: ['A', 'B', 'C', 'D']
+            },
+            yAxis: {
+                title: {
+                    text: 'Chosen Answer Amount'
+                }
+            },
+            series: [{
+                name: ['A', 'B', 'C', 'D'],
+                data: [{ name: 'A', y: 3 }, { name: 'B', y: 1 }, { name: 'C', y: 3 }, { name: 'D', y: 1 }]
+            }]
+        });
+        const chart4 = Highcharts.chart('instructor2', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Question 1'
+            },
+            xAxis: {
+                categories: ['A', 'B', 'C', 'D']
+            },
+            yAxis: {
+                title: {
+                    text: 'Chosen Answer Amount'
+                }
+            },
+            series: [{
+                name: ['Results'],
+                data: [1, 3, 1, 3]
+            }]
+        });;
+    });
+    $('#export-png').click(function () {
+        Highcharts.exportCharts([parent1, parent2]);
+    });
+
+    $('#export-pdf').click(function () {
+        Highcharts.exportCharts([parent1, parent2], {
+            type: 'application/pdf'
+        });
+    });
+</script>

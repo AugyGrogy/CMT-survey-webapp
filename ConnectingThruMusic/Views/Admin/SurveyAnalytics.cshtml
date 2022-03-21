@@ -4,83 +4,56 @@
 
 <form>
     <meta content="width=device-width, initial-scale=1, text-align: center">
-    
+    <h1 class="text-center">Survey Analytics</h1>
     <br /><br />
+          <div class="text-center">
+              <label for="surveyGroup"><b>Which group do you want survey Results?</b></label><br />
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                  <label class="form-check-label" for="inlineRadio1">Parent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                  <label class="form-check-label" for="inlineRadio2">Client/Site</label>
+              </div>
 
-
-    <table>
-        <tr>
-            <td>
-                <select name="group" id="group" style="">
-                    <option value="">Parent</option>
-                    <option value="">Instructor</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><br /></td>
-        </tr>
-        <tr>
-            <td>
-                <div>
-                    <input type="radio" id="quarterTimeFrame" name="TimeFrame" value="">
-                    <label for="choice1">Choose by Quarter</label>
-
-                    <table style="border: solid">
-                        <tr>
-                            <td>
-                                <input type="radio" id="qOne" name="quarter" value="quarterOne">
-                                <label for="qOne">Quarter One</label><br />
-
-                                <input type="radio" id="qTwo" name="quarter" value="quarterTwo">
-                                <label for="qTwo">Quarter Two  </label><br />
-
-                                <input type="radio" id="qThree" name="quarter" value="quarterThree">
-                                <label for="qThree">Quarter Three  </label><br />
-
-                                <input type="radio" id="qFour" name="quarter" value="quarterFour">
-                                <label for="qFour">Quarter Four</label><br />
-                            </td>
-                        </tr>
-                    </table>
-                    <br />
-                    <div>
-                        <input type="radio" id="rangeTimeFrame" name="TimeFrame" value="">
-                        <label for="choice2">Choose by Date</label>
-                        <table style="border: solid">
-                            <tr>
-                                <td>
-                                    <label for="beginDate">Begin date:</label>
-                                    <input type="date" id="start" name="trip-start"
-                                           value="2018-01-01"
-                                           min="2018-01-01" max="2021-12-31">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="endDate">End date:</label>
-                                    <input type="date" id="end" name="trip-start"
-                                           value="2021-10-29"
-                                           min="2018-01-01" max="2021-12-31">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+              <br /><br /><br />
+              <h4>Choose By</h4>
+              <br />
+              <label for="timeFrame"><b>Quarter</b></label><br />
+              <input type="radio" id="qOne" name="quarter" value="quarterOne">
+              <label for="qOne">Quarter One</label><br />
+              <input type="radio" id="qTwo" name="quarter" value="quarterTwo">
+              <label for="qTwo">Quarter Two  </label><br />
+              <input type="radio" id="qThree" name="quarter" value="quarterThree">
+              <label for="qThree">Quarter Three  </label><br />
+              <input type="radio" id="qFour" name="quarter" value="quarterFour">
+              <label for="qFour">Quarter Four</label><br />
+              <br />
+              <h4>Or</h4>
+              <br />
+              <label for="dateRange"><b>Date Rage</b></label>
+              <br />
+              <label for="beginDate">Begin date:</label>
+              <input type="date" id="start" name="trip-start"
+                     value="2018-01-01"
+                     min="2018-01-01" max="2021-12-31">
+              <br />
+              <label for="endDate">End date:</label>
+              <input type="date" id="end" name="trip-start"
+                     value="2022-02-02"
+                     min="2018-01-01" max="2022-12-31">
+              <br />
+              <br />
+              <label for="siteLocation"><b>Site/Location</b></label>
+              <select name="site" id="site">
+                  <option value="site1">Site 1</option>
+              </select>
+          </div>
+    <br /><br /><br />
+                <div class="text-center">
+                    <input type="reset" class="btn btn-primary">
+                    <a asp-controller="SurveyResults" asp-action="AnalyticsResult" class="btn btn-primary" style="margin-left:40vh"> Analytics</a>
+                    <a asp-controller="SurveyResults" asp-action="SurveyResults" class="btn btn-primary" style="margin-left:3vh"> Results</a>
                 </div>
-            </td>
-        </tr>
-        <tr><td><br /></td></tr>
-        <tr>
-            <td>
-                <a asp-controller="Admin" asp-action="AnalyticsResult" class="btn btn-primary"> Analytics</a>
-
-            </td>
-        </tr>
-        <tr><td><br /></td></tr>
-        <tr>
-            <td>
-                <button class="btn btn-primary" onsubmit="">Print Report</button>
-            </td>
-        </tr>
-    </table>
 </form>

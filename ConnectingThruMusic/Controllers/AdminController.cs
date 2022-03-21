@@ -47,10 +47,7 @@ namespace StaffMembers.Controllers
         {
             return View();
         }
-        public IActionResult AnalyticsResult()
-        {
-            return View();
-        }
+
 
 
 
