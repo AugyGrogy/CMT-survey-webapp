@@ -19,7 +19,7 @@ namespace StaffMembers.Controllers
         {
             return View();
         }
-        public IActionResult AddEmails()
+        public IActionResult AddRecipient()
         {
             return View();
         }

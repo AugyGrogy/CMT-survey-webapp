@@ -2,3 +2,17 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+/*function recipient(e) {
+    if (RecipientType.value == 'Parent') {
+
+        document.getElementById('instructor').style.visibility = 'visible';
+        document.getElementById('parent').style.visibility = 'hidden';
+
+
+    }
+    else {
+        document.getElementById('instructor').style.visibility = 'hidden';
+        document.getElementById('parent').style.visibility = 'visible';
+    }
+}*/
