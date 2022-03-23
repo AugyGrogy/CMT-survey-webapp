@@ -16,9 +16,11 @@
     <div class="form-group">
         <input type="submit" value="Add" class="btn btn-primary" />
     </div>
-
-
 </form>
+
+<div>
+    <a asp-controller="Sites" asp-action="SitesIndex">All Sites</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

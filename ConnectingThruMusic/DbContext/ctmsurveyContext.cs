@@ -305,12 +305,12 @@ namespace StaffMembers
                 entity.ToTable("SITES");
 
                 entity.Property(e => e.siteID)
-                    .HasColumnName("sessionID")
+                    .HasColumnName("siteID")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.siteName)
-                    .HasColumnName("sessionName")
+                    .HasColumnName("siteName")
                     .HasMaxLength(255)
                     .IsUnicode(false);
             });

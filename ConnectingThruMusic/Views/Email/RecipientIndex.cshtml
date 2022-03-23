@@ -1,0 +1,63 @@
+﻿@model IEnumerable<StaffMembers.Recipient>
+
+@{
+    ViewData["Title"] = "Recipient Index";
+}
+
+<h1>Recipient Index</h1>
+
+<p>
+    <a asp-action="AddRecipient">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Type
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Child Name
+            </th>
+            <th>
+                sessionID
+            </th>
+            <th>
+                siteID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecipientType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sessionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.siteID)
+            </td>
+            <td>
+                <a asp-action="DeleteRecipient" asp-route-id="@item.RecipientID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
