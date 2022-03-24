@@ -8,7 +8,6 @@ namespace StaffMembers
 {
     public class Recipient
     {
-        [Key]
         public int RecipientID { get; set; }
         public string RecipientType { get; set; }
         public string Name { get; set; }

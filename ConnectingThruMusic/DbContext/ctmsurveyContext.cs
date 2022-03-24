@@ -29,6 +29,7 @@ namespace StaffMembers
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<Staff> Staff_Connected_To_Database { get; set; }
         public virtual DbSet<Recipient> Recipient { get; set; }
+        public virtual DbSet<Recipient> Sessions { get; set; }
 
 
 
@@ -233,6 +234,8 @@ namespace StaffMembers
 
             modelBuilder.Entity<Recipient>(entity =>
             {
+                entity.HasKey(e => e.RecipientID);
+
                 entity.ToTable("RECIPIENT");
 
                 entity.Property(e => e.RecipientID)

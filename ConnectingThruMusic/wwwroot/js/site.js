@@ -3,8 +3,8 @@
 
 // Write your JavaScript code.
 
-function recipient() {
-    if (document.getElementById('instructorOpt').checked) {
+/*function recipient(e) {
+    if (RecipientType.value == 'Parent') {
 
         document.getElementById('instructor').style.visibility = 'visible';
         document.getElementById('parent').style.visibility = 'hidden';
@@ -15,5 +15,4 @@ function recipient() {
         document.getElementById('instructor').style.visibility = 'hidden';
         document.getElementById('parent').style.visibility = 'visible';
     }
-}
-
+}*/
