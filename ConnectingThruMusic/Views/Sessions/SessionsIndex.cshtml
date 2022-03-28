@@ -1,0 +1,33 @@
+﻿@model IEnumerable<StaffMembers.Sessions>
+
+@{
+    ViewData["Title"] = "Session Index";
+}
+
+<h1>Session Index</h1>
+
+<p>
+    <a asp-action="AddSession">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Session Names
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.sessionName)
+            </td>
+            <td>
+                <a asp-action="DeleteSession" asp-route-id="@item.sessionID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

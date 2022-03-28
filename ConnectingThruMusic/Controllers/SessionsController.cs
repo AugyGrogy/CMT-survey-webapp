@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace StaffMembers.Controllers
 {
-
-
     public class SessionsController : Controller
     {
 
@@ -47,7 +45,7 @@ namespace StaffMembers.Controllers
             return View();
         }
 
-        // Post: Questions/AddQuestion
+        // Post: Sessions/AddSession
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddSession([Bind("sessionID, sessionName")] Sessions sessions)
@@ -61,7 +59,7 @@ namespace StaffMembers.Controllers
             return View(sessions);
         }
 
-        // Get: Question/Edit
+        // Get: Session/Edit
         public async Task<IActionResult> EditSession(int? id)
         {
             if (id == null)
@@ -78,10 +76,10 @@ namespace StaffMembers.Controllers
             return View(sessions);
         }
 
-        // Post: EditQuestions/Edit
+        // Post: EditSession/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditQuestion(int id, [Bind("sessionID, sessionName")] Sessions sessions)
+        public async Task<IActionResult> EditSession(int id, [Bind("sessionID, sessionName")] Sessions sessions)
         {
             if (id != sessions.sessionID)
             {
@@ -111,7 +109,7 @@ namespace StaffMembers.Controllers
             return View(sessions);
         }
 
-        // Get: Questions/Delete
+        // Get: Sessions/Delete
         public async Task<IActionResult> DeleteSession(int? id)
         {
             if (id == null)
@@ -129,13 +127,13 @@ namespace StaffMembers.Controllers
             return View(sessions);
         }
 
-        // Post: Quesitons/Delete
+        // Post: Session/Delete
         [HttpPost, ActionName("DeleteSession")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var session = await _context.Questions.FindAsync(id);
-            _context.Questions.Remove(session);
+            var session = await _context.Sessions.FindAsync(id);
+            _context.Sessions.Remove(session);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(SessionsIndex));
 
