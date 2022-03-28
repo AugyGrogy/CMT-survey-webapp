@@ -31,7 +31,7 @@
 
     <form asp-action="DeleteQuestion">
         <input type="hidden" asp-for="QuestionId" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
+        <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete question: @Html.DisplayFor(model => model.QuestionText)')"/>
         <a asp-controller="Question" asp-action="QuestionIndex">Back to List</a>
     </form>
 </div>

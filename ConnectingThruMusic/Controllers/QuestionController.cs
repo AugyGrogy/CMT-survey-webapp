@@ -54,6 +54,7 @@ namespace StaffMembers
             {
                 _context.Add(question);
                 await _context.SaveChangesAsync();
+                TempData["AlertMessage"] = "Question Created Successfully!";
                 return RedirectToAction(nameof(QuestionIndex));
             }
             return View(question);
@@ -92,6 +93,7 @@ namespace StaffMembers
                 {
                     _context.Update(question);
                     await _context.SaveChangesAsync();
+                    TempData["AlertMessage"] = "Question Updated Successfully!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -135,6 +137,7 @@ namespace StaffMembers
             var question = await _context.Questions.FindAsync(id);
             _context.Questions.Remove(question);
             await _context.SaveChangesAsync();
+            TempData["AlertMessage"] = "Question Deleted Successfully!";
             return RedirectToAction(nameof(QuestionIndex));
 
         }
