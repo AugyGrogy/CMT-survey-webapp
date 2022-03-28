@@ -155,31 +155,26 @@ namespace StaffMembers
                     .IsUnicode(false);
 
                 entity.Property(e => e.AnswerA)
-                    .IsRequired()
                     .HasColumnName("AnswerA")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AnswerB)
-                    .IsRequired()
                     .HasColumnName("AnswerB")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AnswerC)
-                    .IsRequired()
                     .HasColumnName("AnswerC")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AnswerD)
-                    .IsRequired()
                     .HasColumnName("AnswerD")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AnswerE)
-                    .IsRequired()
                     .HasColumnName("AnswerE")
                     .HasMaxLength(255)
                     .IsUnicode(false);

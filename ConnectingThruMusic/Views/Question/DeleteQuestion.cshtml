@@ -5,7 +5,7 @@
 @{
 }
 @{
-    ViewData["Title"] = "DeleteQuestion";
+    ViewData["Title"] = "Delete";
 }
 
 <h1>Delete</h1>
@@ -19,22 +19,19 @@
             @Html.DisplayNameFor(model => model.QuestionId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.QuestionType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EffectiveDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ExpirationDate)
+            @Html.DisplayFor(model => model.QuestionId)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.QuestionText)
         </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
     </dl>
 
     <form asp-action="DeleteQuestion">
         <input type="hidden" asp-for="QuestionId" />
-        <input type="submit" value="DeleteQuestion" class="btn btn-danger" />
+        <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete question: @Html.DisplayFor(model => model.QuestionText)')"/>
         <a asp-controller="Question" asp-action="QuestionIndex">Back to List</a>
     </form>
 </div>

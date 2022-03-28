@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -9,9 +12,12 @@ namespace StaffMembers
 {
     public partial class Questions
     {
+        [Key]
         public int QuestionId { get; set; }
         public string QuestionText { get; set; }
+        [Required(ErrorMessage = "Please enter a question")]
         public string QuestionType { get; set; }
+        [Required(ErrorMessage = "Please select a question type")]
         public string AnswerA { get; set; }
         public string AnswerB { get; set; }
         public string AnswerC { get; set; }

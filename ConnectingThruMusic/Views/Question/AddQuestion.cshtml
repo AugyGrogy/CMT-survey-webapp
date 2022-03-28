@@ -6,7 +6,7 @@
 
 <h1>Create</h1>
 
-<h4>Employee</h4>
+<h4>Question</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,7 +25,7 @@
                 <select asp-for="QuestionType" class="form-control">
                     <option value="" disabled selected>Select your option</option>
                     <option value="TF">True/False</option>
-                    <option value="MC">Multiple Choice</option>
+                    <option value="MC" ajax="">Multiple Choice</option>
                     <option value="FR">Free Response</option>
                 </select>
                 <span asp-validation-for="QuestionType" class="text-danger"></span>
