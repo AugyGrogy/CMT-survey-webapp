@@ -1,0 +1,28 @@
+﻿@model StaffMembers.Sessions
+
+@{
+    ViewData["Title"] = "Delete Session";
+}
+
+<h1>Delete Session</h1>
+
+<br />
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Session Name:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sessionName)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteSession" class="text-center">
+        <input type="hidden" asp-for="sessionID" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <br />
+        <br />
+        <a asp-action="SessionsIndex">Back to Sessions</a>
+    </form>
+</div>

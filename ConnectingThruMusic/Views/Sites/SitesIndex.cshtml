@@ -1,0 +1,33 @@
+﻿@model IEnumerable<StaffMembers.Sites>
+
+@{
+    ViewData["Title"] = "SitesIndex";
+}
+
+<h1>Sites Index</h1>
+
+<p>
+    <a asp-action="AddSite">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Site Names
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.siteName)
+            </td>
+            <td>
+                <a asp-action="DeleteSite" asp-route-id="@item.siteID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

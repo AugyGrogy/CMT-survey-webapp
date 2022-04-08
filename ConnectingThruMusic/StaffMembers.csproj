@@ -13,6 +13,16 @@
     <Compile Remove="Migrations\20220228152607_Test.Designer.cs" />
     <Compile Remove="Migrations\20220228164506_RecipientMigration.cs" />
     <Compile Remove="Migrations\20220228164506_RecipientMigration.Designer.cs" />
+    <Compile Remove="Migrations\20220325203726_Survey.cs" />
+    <Compile Remove="Migrations\20220325203726_Survey.Designer.cs" />
+    <Compile Remove="Migrations\20220325203845_Survey.cs" />
+    <Compile Remove="Migrations\20220325203845_Survey.Designer.cs" />
+    <Compile Remove="Migrations\20220325204234_Survey.cs" />
+    <Compile Remove="Migrations\20220325204234_Survey.Designer.cs" />
+    <Compile Remove="Migrations\20220325204653_Survey.cs" />
+    <Compile Remove="Migrations\20220325204653_Survey.Designer.cs" />
+    <Compile Remove="Migrations\20220325205625_Initial.cs" />
+    <Compile Remove="Migrations\20220325205625_Initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +34,7 @@
     <None Remove="Views\Signin\" />
 	<None Remove="Views\Question\" />
 	<None Remove="Views\Admin\" />
+	<None Remove="Views\Email\" />
 	<None Remove="Views\StaffStartSurvey\" />
   </ItemGroup>
   <ItemGroup>
@@ -32,10 +43,10 @@
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\StaffStartSurvey\" />
     <Folder Include="Views\Signin\" />
+	
 
 
 	<Folder Include="Views\Question\" />
-	<Folder Include="Views\Admin\" />
 	<Folder Include="Views\StaffStartSurvey\" />
 	<Folder Include="Views\Shared\" />
 	<Folder Include="Views\Question\" />

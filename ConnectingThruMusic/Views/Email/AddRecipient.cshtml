@@ -6,6 +6,13 @@
 }
 
 
+<script>
+function success() {
+  alert("Email Added!");
+}
+</script>
+
+
 <h2 class="text-center">Add Emails</h2>
 
 <br />
@@ -18,13 +25,13 @@
 
 
     <div class="form-check form-check-inline">
-        @Html.RadioButtonFor(m => m.RecipientType, "Parent", new { onclick = "javascript:recipient(this)" }) Parent
+        @Html.RadioButtonFor(m => m.RecipientType, "Parent") Parent
         <span asp-validation-for="RecipientType" class="text-danger"></span>
 
     </div>
     <div class="form-check form-check-inline">
 
-        @Html.RadioButtonFor(m => m.RecipientType, "Instructor", new { onclick = "javascript:recipient(this)" }) Instructor
+        @Html.RadioButtonFor(m => m.RecipientType, "Instructor") Instructor
         <span asp-validation-for="RecipientType" class="text-danger"></span>
 
     </div>
@@ -45,14 +52,12 @@
     <span asp-validation-for="Email" class="text-danger"></span>
     <br />
 
-    <div class="parent" id="parent" style="visibility:visible">
 
-        <label asp-for="ChildName">Children Name:</label><br />
-        <input asp-for="ChildName" type="text" name="cname" id="cname" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-        <br />
+    <label asp-for="ChildName">Children Name:</label><br />
+    <input asp-for="ChildName" type="text" name="ChildName" id="ChildName" />
+    <span asp-validation-for="ChildName" class="text-danger"></span>
+    <br />
 
-    </div>
 
     <br />
 
@@ -72,15 +77,15 @@
             <option value="Fall 2023">Fall 2023</option>
             <option value="Intersession 2023">Intersession 2023</option>
         </select>
-        <span asp-validation-for="Email" class="text-danger"></span>
+        <span asp-validation-for="sessionID" class="text-danger"></span>
         <br />
-        <a asp-controller="Sessions" asp-action="AddSessions" style="font-size:x-small">Add Sessions</a>
+        <a asp-controller="Sessions" asp-action="AddSession" style="font-size:x-small">Add Sessions</a>
         <br />
 
 
         <label asp-for="siteID">Sites:</label><br />
-        <select asp-for="siteID" name="Location" id="Location">
-            <option value="Select" selected="selected" disabled="disabled" required>Locations...</option>
+        <select asp-for="siteID" name="Site" id="Site">
+            <option value="Select" selected="selected" disabled="disabled" required>Sites...</option>
             <option value="Alden Rd">Alden Rd</option>
             <option value="Angelwood">Angelwood</option>
             <option value="DLC N&L">DLC N&L</option>
@@ -95,16 +100,23 @@
             <option value="PP">PP</option>
             <option value="River Oaks">River Oaks</option>
         </select>
-        <span asp-validation-for="Email" class="text-danger"></span>
+        <span asp-validation-for="siteID" class="text-danger"></span>
         <br />
-        <a asp-controller="Loactions" asp-action="Locations" style="font-size:x-small">Add Locations</a>
+        <a asp-controller="Sites" asp-action="AddSite" style="font-size:x-small">Add Sites</a>
         <br />
         <br />
     </div>
-    <input type="submit" value=" Add " class="btn btn-primary" />
+    <input type="submit" value=" Add " class="btn btn-primary" onclick="success()"/>
 
 
 </form>
+
+<br />
+<br />
+
+<div class="text-center">
+    <a asp-controller="Email" asp-action="RecipientIndex">All Emails</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

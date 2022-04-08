@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,79 +10,137 @@ namespace StaffMembers.Controllers
 {
     public class SitesController : Controller
     {
-        // GET: Sites
-        public ActionResult Index()
+        private readonly ctmsurveyContext _context;
+
+        public SitesController(ctmsurveyContext context)
+        {
+            _context = context;
+        }
+        // Get: Sites
+        public async Task<IActionResult> SitesIndex()
+        {
+            return View(await _context.Sites.ToListAsync());
+        }
+
+        //Get: Sites/SitesDetails
+        public async Task<IActionResult> SitesDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var site = await _context.Sites.FirstOrDefaultAsync(m => m.siteID == id);
+            if (site == null)
+            {
+                return NotFound();
+            }
+            return View(site);
+        }
+
+        // Get: Site/AddSite
+        public IActionResult AddSite()
         {
             return View();
         }
 
-        // GET: SitesController/Details
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: SitesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SitesController/Create
+        // Post: Site/AddSite
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> AddSite([Bind("siteID, siteName")] Sites sites)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                _context.Add(sites);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(SitesIndex));
             }
-            catch
-            {
-                return View();
-            }
+            return View(sites);
         }
 
-        // GET: SitesController/Edit/5
-        public ActionResult Edit(int id)
+        // Get: Site/Edit
+        public async Task<IActionResult> EditSite(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var sites = await _context.Sites.FindAsync(id);
+
+            if (sites == null)
+            {
+                return NotFound();
+            }
+
+            return View(sites);
         }
 
-        // POST: SitesController/Edit/5
+        // Post: EditSites/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> EditSite(int id, [Bind("siteID, siteName")] Sites sites)
         {
-            try
+            if (id != sites.siteID)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
+
+            if (ModelState.IsValid)
             {
-                return View();
+                try
+                {
+                    _context.Update(sites);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!SiteExists(sites.siteID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(SitesIndex));
             }
+            return View(sites);
         }
 
-        // GET: SitesController/Delete/5
-        public ActionResult Delete(int id)
+        // Get: Sites/Delete
+        public async Task<IActionResult> DeleteSite(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var sites = await _context.Sites.FirstOrDefaultAsync(m => m.siteID == id);
+
+            if (sites == null)
+            {
+                return NotFound();
+            }
+
+            return View(sites);
         }
 
-        // POST: SitesController/Delete/5
-        [HttpPost]
+        // Post: Sites/Delete
+        [HttpPost, ActionName("DeleteSite")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var site = await _context.Sites.FindAsync(id);
+            _context.Sites.Remove(site);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(SitesIndex));
+
+        }
+
+        private bool SiteExists(int id)
+        {
+            return _context.Sites.Any(e => e.siteID == id);
         }
     }
 }
