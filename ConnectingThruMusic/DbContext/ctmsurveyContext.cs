@@ -43,6 +43,7 @@ namespace StaffMembers
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Answers>(entity =>
             {
                 entity.HasKey(e => e.AnswerId);
