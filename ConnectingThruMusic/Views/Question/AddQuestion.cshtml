@@ -4,6 +4,13 @@
     ViewData["Title"] = "Add Questions";
 }
 
+<style>
+    #answerGroup {
+        display: none;
+    }
+</style>
+
+
 <h1>Create</h1>
 
 <h4>Question</h4>
@@ -22,39 +29,42 @@
             </div>
             <div class="form-group">
                 <label asp-for="QuestionType" class="control-label"></label>
-                <select asp-for="QuestionType" class="form-control">
+                <select asp-for="QuestionType" class="form-control" id="qType" onchange="collapseAnswers()">
                     <option value="" disabled selected>Select your option</option>
                     <option value="TF">True/False</option>
-                    <option value="MC" ajax="">Multiple Choice</option>
+                    <option value="MC" class="collapsible">Multiple Choice</option>
                     <option value="FR">Free Response</option>
                 </select>
                 <span asp-validation-for="QuestionType" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AnswerA" class="control-label"></label>
-                <input asp-for="AnswerA" class="form-control" />
-                <span asp-validation-for="AnswerA" class="text-danger"></span>
+            <div class="content" id="answerGroup">
+                <div class="form-group">
+                    <label asp-for="AnswerA" class="control-label"></label>
+                    <input asp-for="AnswerA" class="form-control" />
+                    <span asp-validation-for="AnswerA" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AnswerB" class="control-label"></label>
+                    <input asp-for="AnswerB" class="form-control" />
+                    <span asp-validation-for="AnswerB" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AnswerC" class="control-label"></label>
+                    <input asp-for="AnswerC" class="form-control" />
+                    <span asp-validation-for="AnswerC" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AnswerD" class="control-label"></label>
+                    <input asp-for="AnswerD" class="form-control" />
+                    <span asp-validation-for="AnswerD" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AnswerE" class="control-label"></label>
+                    <input asp-for="AnswerE" class="form-control" />
+                    <span asp-validation-for="AnswerE" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="AnswerB" class="control-label"></label>
-                <input asp-for="AnswerB" class="form-control" />
-                <span asp-validation-for="AnswerB" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AnswerC" class="control-label"></label>
-                <input asp-for="AnswerC" class="form-control" />
-                <span asp-validation-for="AnswerC" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AnswerD" class="control-label"></label>
-                <input asp-for="AnswerD" class="form-control" />
-                <span asp-validation-for="AnswerD" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AnswerE" class="control-label"></label>
-                <input asp-for="AnswerE" class="form-control" />
-                <span asp-validation-for="AnswerE" class="text-danger"></span>
-            </div>
+            <div id="msgbox"></div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -69,3 +79,20 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+
+    function collapseAnswers() {
+        var select = document.getElementById('qType');
+        var value = select.options[select.selectedIndex].value;
+        var answers = document.getElementById('answerGroup');
+        if (value === "MC") {
+            console.log(value);
+            answers.style.display = 'block';
+        }
+        else {
+            answers.style.display = "none";
+        }
+
+    }
+</script>

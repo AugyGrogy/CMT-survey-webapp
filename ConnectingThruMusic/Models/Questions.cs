@@ -14,10 +14,10 @@ namespace StaffMembers
     {
         [Key]
         public int QuestionId { get; set; }
-        public string QuestionText { get; set; }
         [Required(ErrorMessage = "Please enter a question")]
+        public string QuestionText { get; set; }
+       [Required(ErrorMessage = "Please select a question type")]
         public string QuestionType { get; set; }
-        [Required(ErrorMessage = "Please select a question type")]
         public string AnswerA { get; set; }
         public string AnswerB { get; set; }
         public string AnswerC { get; set; }
