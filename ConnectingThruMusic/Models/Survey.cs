@@ -16,7 +16,5 @@ namespace StaffMembers
 
         public List<Questions> Questions { get; set; }
 
-        public List<Answers> Answers { get; set; }
-
     }
 }

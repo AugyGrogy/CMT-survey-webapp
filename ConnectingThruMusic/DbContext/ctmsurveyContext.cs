@@ -31,8 +31,7 @@ namespace StaffMembers
         public virtual DbSet<Recipient> Recipient { get; set; }
         public virtual DbSet<Sessions> Sessions { get; set; }
         public virtual DbSet<Sites> Sites { get; set; }
-
-
+        public virtual DbSet<Survey> Survey { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -43,6 +42,7 @@ namespace StaffMembers
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Answers>(entity =>
             {
@@ -310,6 +310,8 @@ namespace StaffMembers
                     .HasMaxLength(255)
                     .IsUnicode(false);
             });
+
+
 
 
             OnModelCreatingPartial(modelBuilder);

@@ -23,6 +23,8 @@
     <Compile Remove="Migrations\20220325204653_Survey.Designer.cs" />
     <Compile Remove="Migrations\20220325205625_Initial.cs" />
     <Compile Remove="Migrations\20220325205625_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20220415225445_SurveyCreation.cs" />
+    <Compile Remove="Migrations\20220415225445_SurveyCreation.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +40,7 @@
 	<None Remove="Views\StaffStartSurvey\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="Views\Staff\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\Roles\" />
