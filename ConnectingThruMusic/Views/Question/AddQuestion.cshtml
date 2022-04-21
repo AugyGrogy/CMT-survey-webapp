@@ -3,6 +3,14 @@
 @{
     ViewData["Title"] = "Add Questions";
 }
+
+<style>
+    #answerGroup {
+        display: none;
+    }
+</style>
+
+
 <h1>Create</h1>
 
 <h4>Question</h4>
@@ -21,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="QuestionType" class="control-label"></label>
-                <select asp-for="QuestionType" class="form-control" id="qType">
+                <select asp-for="QuestionType" class="form-control" id="qType" onchange="collapseAnswers()">
                     <option value="" disabled selected>Select your option</option>
                     <option value="TF">True/False</option>
                     <option value="MC" class="collapsible">Multiple Choice</option>
@@ -29,8 +37,7 @@
                 </select>
                 <span asp-validation-for="QuestionType" class="text-danger"></span>
             </div>
-            <!--            <button type="button" class="collapsible">Open Collapsible</button> -->
-            <div class="content">
+            <div class="content" id="answerGroup">
                 <div class="form-group">
                     <label asp-for="AnswerA" class="control-label"></label>
                     <input asp-for="AnswerA" class="form-control" />
@@ -74,33 +81,18 @@
 }
 
 <script>
-    var coll = document.getElementById('qType');
-    var i;
 
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }
-        });
-    }
-
-
-
-    const dropDown = document.getElementById('qType');
-    dropDown.addEventListener('click', function (event) {
-        console.log(event.target.value)
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (event.target.value === 'MC') {
-            content.style.display = "block";
+    function collapseAnswers() {
+        var select = document.getElementById('qType');
+        var value = select.options[select.selectedIndex].value;
+        var answers = document.getElementById('answerGroup');
+        if (value === "MC") {
+            console.log(value);
+            answers.style.display = 'block';
         }
         else {
-            content.style.display = "none";
+            answers.style.display = "none";
         }
-    });
+
+    }
 </script>

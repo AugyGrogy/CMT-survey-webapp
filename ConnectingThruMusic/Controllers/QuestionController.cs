@@ -52,10 +52,23 @@ namespace StaffMembers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(question);
-                await _context.SaveChangesAsync();
-                TempData["AlertMessage"] = "Question Created Successfully!";
-                return RedirectToAction(nameof(QuestionIndex));
+                if (question.QuestionType == "TF")
+                {
+                    question.AnswerA = "True";
+                    question.AnswerB = "False";
+                    _context.Add(question);
+                    await _context.SaveChangesAsync();
+                    TempData["AlertMessage"] = "Question Created Successfully!";
+                    return RedirectToAction(nameof(QuestionIndex));
+                }
+                else
+                {
+                    _context.Add(question);
+                    await _context.SaveChangesAsync();
+                    TempData["AlertMessage"] = "Question Created Successfully!";
+                    return RedirectToAction(nameof(QuestionIndex));
+                }
+                
             }
             return View(question);
         }
