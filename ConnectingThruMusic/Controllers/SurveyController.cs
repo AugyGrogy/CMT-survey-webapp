@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StaffMembers.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,36 @@ namespace StaffMembers.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> CreateSurvey()
+        public async Task<IActionResult> Index ()
         {
-            return View(await _context.Questions.ToListAsync());
+
+
+           
+            return View(new CreateSurveyViewModel()
+            {
+                Questions = await _context.Questions.ToListAsync()
+            }) ;
+
+
+
+        }
+
+        public async Task<IActionResult> Create(CreateSurveyViewModel model)
+        {
+
+            if (ModelState.IsValid)
+           {
+                _context.Add(new Survey() { SurveyName });
+                    new Survey() {
+                    
+                    }
+
+
+               ;
+               await _context.SaveChangesAsync();
+               return RedirectToAction(("CreateSurvey"));
+           }
+
         }
     }
 

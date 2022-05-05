@@ -13,7 +13,7 @@ namespace StaffMembers
         public string Name { get; set; }
         public string Email { get; set; }
         public string ChildName { get; set; }
-        public int sessionID { get; set; }
-        public int siteID { get; set; }
+        public int? sessionID { get; set; }
+        public int? siteID { get; set; }
     }
 }

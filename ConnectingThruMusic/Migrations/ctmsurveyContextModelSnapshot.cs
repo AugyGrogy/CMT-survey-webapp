@@ -68,21 +68,27 @@ namespace StaffMembers.Migrations
                     b.ToTable("INSTRUCTOR");
                 });
 
-            modelBuilder.Entity("StaffMembers.InstructorSurveyAnswer", b =>
+            modelBuilder.Entity("StaffMembers.InstructorSurveyResponses", b =>
                 {
-                    b.Property<int>("AnswerId")
-                        .HasColumnName("answerID")
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionResponse")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ResponseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SurveyID")
                         .HasColumnType("int");
 
-                    b.Property<int>("InstructorId")
-                        .HasColumnName("instructorID")
-                        .HasColumnType("int");
+                    b.Property<string>("SurveyName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnName("questionID")
-                        .HasColumnType("int");
-
-                    b.ToTable("INSTRUCTOR_SURVEY_ANSWER");
+                    b.ToTable("InstructorSurveyResponses");
                 });
 
             modelBuilder.Entity("StaffMembers.Parent", b =>
@@ -108,21 +114,27 @@ namespace StaffMembers.Migrations
                     b.ToTable("PARENT");
                 });
 
-            modelBuilder.Entity("StaffMembers.ParentSurveyAnswer", b =>
+            modelBuilder.Entity("StaffMembers.ParentSurveyResponses", b =>
                 {
-                    b.Property<int>("AnswerId")
-                        .HasColumnName("answerID")
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionResponse")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ResponseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SurveyID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ParentId")
-                        .HasColumnName("parentID")
-                        .HasColumnType("int");
+                    b.Property<string>("SurveyName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnName("questionID")
-                        .HasColumnType("int");
-
-                    b.ToTable("PARENT_SURVEY_ANSWER");
+                    b.ToTable("ParentSurveyResponses");
                 });
 
             modelBuilder.Entity("StaffMembers.QuestionType", b =>
@@ -150,7 +162,6 @@ namespace StaffMembers.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AnswerA")
-                        .IsRequired()
                         .HasColumnName("AnswerA")
                         .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
@@ -191,8 +202,7 @@ namespace StaffMembers.Migrations
                     b.Property<string>("QuestionText")
                         .IsRequired()
                         .HasColumnName("questionText")
-                        .HasColumnType("varchar(255)")
-                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(MAX)")
                         .IsUnicode(false);
 
                     b.Property<string>("QuestionType")
@@ -202,12 +212,7 @@ namespace StaffMembers.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<int?>("SurveyID")
-                        .HasColumnType("int");
-
                     b.HasKey("QuestionId");
-
-                    b.HasIndex("SurveyID");
 
                     b.ToTable("QUESTIONS");
                 });
@@ -247,13 +252,13 @@ namespace StaffMembers.Migrations
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
-                    b.Property<int>("sessionID")
+                    b.Property<int?>("sessionID")
                         .HasColumnName("sessionID")
                         .HasColumnType("int")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
-                    b.Property<int>("siteID")
+                    b.Property<int?>("siteID")
                         .HasColumnName("siteID")
                         .HasColumnType("int")
                         .HasMaxLength(255)
@@ -370,11 +375,34 @@ namespace StaffMembers.Migrations
                     b.ToTable("Survey");
                 });
 
-            modelBuilder.Entity("StaffMembers.Questions", b =>
+            modelBuilder.Entity("StaffMembers.SurveyQuestions", b =>
                 {
-                    b.HasOne("StaffMembers.Survey", null)
-                        .WithMany("Questions")
-                        .HasForeignKey("SurveyID");
+                    b.Property<int>("SurveyID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SurveyID", "QuestionId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("SurveyQuestions");
+                });
+
+            modelBuilder.Entity("StaffMembers.SurveyQuestions", b =>
+                {
+                    b.HasOne("StaffMembers.Questions", "Questions")
+                        .WithMany("SurveyQuestions")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffMembers.Survey", "Survey")
+                        .WithMany("SurveyQuestions")
+                        .HasForeignKey("SurveyID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StaffMembers.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,12 +36,15 @@ namespace StaffMembers.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "INSTRUCTOR_SURVEY_ANSWER",
+                name: "InstructorSurveyResponses",
                 columns: table => new
                 {
-                    questionID = table.Column<int>(nullable: false),
-                    instructorID = table.Column<int>(nullable: false),
-                    answerID = table.Column<int>(nullable: false)
+                    SurveyID = table.Column<int>(nullable: false),
+                    SurveyName = table.Column<string>(nullable: true),
+                    QuestionText = table.Column<string>(nullable: true),
+                    QuestionResponse = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    ResponseDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,12 +65,15 @@ namespace StaffMembers.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PARENT_SURVEY_ANSWER",
+                name: "ParentSurveyResponses",
                 columns: table => new
                 {
-                    questionID = table.Column<int>(nullable: false),
-                    parentID = table.Column<int>(nullable: false),
-                    answerID = table.Column<int>(nullable: false)
+                    SurveyID = table.Column<int>(nullable: false),
+                    SurveyName = table.Column<string>(nullable: true),
+                    QuestionText = table.Column<string>(nullable: true),
+                    QuestionResponse = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    ResponseDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,6 +91,27 @@ namespace StaffMembers.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "QUESTIONS",
+                columns: table => new
+                {
+                    questionID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    questionText = table.Column<string>(type: "nvarchar(MAX)", unicode: false, nullable: false),
+                    questionType = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    AnswerA = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
+                    AnswerB = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
+                    AnswerC = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
+                    AnswerD = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
+                    AnswerE = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
+                    effectiveDate = table.Column<DateTime>(type: "date", nullable: true),
+                    expirationDate = table.Column<DateTime>(type: "date", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QUESTIONS", x => x.questionID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RECIPIENT",
                 columns: table => new
                 {
@@ -94,8 +121,8 @@ namespace StaffMembers.Migrations
                     Name = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     Email = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
                     ChildName = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
-                    sessionID = table.Column<int>(unicode: false, maxLength: 255, nullable: false),
-                    siteID = table.Column<int>(unicode: false, maxLength: 255, nullable: false)
+                    sessionID = table.Column<int>(unicode: false, maxLength: 255, nullable: true),
+                    siteID = table.Column<int>(unicode: false, maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -159,54 +186,33 @@ namespace StaffMembers.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "QUESTIONS",
+                name: "SurveyQuestions",
                 columns: table => new
                 {
-                    questionID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    questionText = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
-                    questionType = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    AnswerA = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
-                    AnswerB = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
-                    AnswerC = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
-                    AnswerD = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
-                    AnswerE = table.Column<string>(unicode: false, maxLength: 255, nullable: true),
-                    effectiveDate = table.Column<DateTime>(type: "date", nullable: true),
-                    expirationDate = table.Column<DateTime>(type: "date", nullable: true),
+                    SurveyID = table.Column<int>(nullable: false),
+                    QuestionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_QUESTIONS", x => x.questionID);                    
+                    table.PrimaryKey("PK_SurveyQuestions", x => new { x.SurveyID, x.QuestionId });
+                    table.ForeignKey(
+                        name: "FK_SurveyQuestions_QUESTIONS_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "QUESTIONS",
+                        principalColumn: "questionID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SurveyQuestions_Survey_SurveyID",
+                        column: x => x.SurveyID,
+                        principalTable: "Survey",
+                        principalColumn: "SurveyID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-              name: "SurveyQuestions",
-              columns: table => new
-              {
-                  SurveyID = table.Column<int>(nullable: false),
-                  QuestionID = table.Column<int>(nullable: false),
-              },
-              constraints: table =>
-              {
-                  table.PrimaryKey("PK_SurveyQuestion", x => new { x.SurveyID, x.QuestionID });
-              });
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_SurveyQuestions_Survey_SurveyID",
-                table: "Survey",
-                column: "SurveyID",
-                principalTable: "Survey",
-                principalColumn: "SurveyID",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-               name: "FK_SurveyQuestions_QUESTIONS_QuestionID",
-               table: "QUESTIONS",
-               column: "QuestionID",
-               principalTable: "QUESTIONS",
-               principalColumn: "QuestionID",
-               onDelete: ReferentialAction.Restrict);
-
+            migrationBuilder.CreateIndex(
+                name: "IX_SurveyQuestions_QuestionId",
+                table: "SurveyQuestions",
+                column: "QuestionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -218,19 +224,16 @@ namespace StaffMembers.Migrations
                 name: "INSTRUCTOR");
 
             migrationBuilder.DropTable(
-                name: "INSTRUCTOR_SURVEY_ANSWER");
+                name: "InstructorSurveyResponses");
 
             migrationBuilder.DropTable(
                 name: "PARENT");
 
             migrationBuilder.DropTable(
-                name: "PARENT_SURVEY_ANSWER");
+                name: "ParentSurveyResponses");
 
             migrationBuilder.DropTable(
                 name: "QUESTION_TYPE");
-
-            migrationBuilder.DropTable(
-                name: "QUESTIONS");
 
             migrationBuilder.DropTable(
                 name: "RECIPIENT");
@@ -243,6 +246,12 @@ namespace StaffMembers.Migrations
 
             migrationBuilder.DropTable(
                 name: "STAFF");
+
+            migrationBuilder.DropTable(
+                name: "SurveyQuestions");
+
+            migrationBuilder.DropTable(
+                name: "QUESTIONS");
 
             migrationBuilder.DropTable(
                 name: "Survey");
