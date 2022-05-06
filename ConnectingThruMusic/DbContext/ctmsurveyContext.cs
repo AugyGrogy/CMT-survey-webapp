@@ -22,17 +22,17 @@ namespace StaffMembers
 
         public virtual DbSet<Answers> Answers { get; set; }
         public virtual DbSet<Instructor> Instructor { get; set; }
-        public virtual DbSet<InstructorSurveyAnswer> InstructorSurveyAnswer { get; set; }
+        public virtual DbSet<InstructorSurveyResponses> InstructorSurveyResponses { get; set; }
         public virtual DbSet<Parent> Parent { get; set; }
-        public virtual DbSet<ParentSurveyAnswer> ParentSurveyAnswer { get; set; }
+        public virtual DbSet<ParentSurveyResponses> ParentSurveyResponses { get; set; }
         public virtual DbSet<QuestionType> QuestionType { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<Staff> Staff_Connected_To_Database { get; set; }
         public virtual DbSet<Recipient> Recipient { get; set; }
         public virtual DbSet<Sessions> Sessions { get; set; }
         public virtual DbSet<Sites> Sites { get; set; }
-
-
+        public virtual DbSet<Survey> Survey { get; set; }
+        public virtual DbSet<Survey> SurveyQuestions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -43,6 +43,7 @@ namespace StaffMembers
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Answers>(entity =>
             {
@@ -80,17 +81,9 @@ namespace StaffMembers
                 entity.Property(e => e.TimeFrameId).HasColumnName("timeFrameID");
             });
 
-            modelBuilder.Entity<InstructorSurveyAnswer>(entity =>
+            modelBuilder.Entity<InstructorSurveyResponses>(entity =>
             {
                 entity.HasNoKey();
-
-                entity.ToTable("INSTRUCTOR_SURVEY_ANSWER");
-
-                entity.Property(e => e.AnswerId).HasColumnName("answerID");
-
-                entity.Property(e => e.InstructorId).HasColumnName("instructorID");
-
-                entity.Property(e => e.QuestionId).HasColumnName("questionID");
             });
 
             modelBuilder.Entity<Parent>(entity =>
@@ -108,17 +101,9 @@ namespace StaffMembers
                 entity.Property(e => e.TimeframeId).HasColumnName("timeframeID");
             });
 
-            modelBuilder.Entity<ParentSurveyAnswer>(entity =>
+            modelBuilder.Entity<ParentSurveyResponses>(entity =>
             {
                 entity.HasNoKey();
-
-                entity.ToTable("PARENT_SURVEY_ANSWER");
-
-                entity.Property(e => e.AnswerId).HasColumnName("answerID");
-
-                entity.Property(e => e.ParentId).HasColumnName("parentID");
-
-                entity.Property(e => e.QuestionId).HasColumnName("questionID");
             });
 
             modelBuilder.Entity<QuestionType>(entity =>
@@ -148,7 +133,6 @@ namespace StaffMembers
                 entity.Property(e => e.QuestionText)
                     .IsRequired()
                     .HasColumnName("questionText")
-                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.QuestionType)
@@ -311,6 +295,19 @@ namespace StaffMembers
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<SurveyQuestions>().HasKey(sc => new { sc.SurveyID, sc.QuestionId });
+
+            modelBuilder.Entity<SurveyQuestions>()
+                .HasOne<Survey>(sc => sc.Survey)
+                .WithMany(s => s.SurveyQuestions)
+                .HasForeignKey(sc => sc.SurveyID);
+
+
+            modelBuilder.Entity<SurveyQuestions>()
+                .HasOne<Questions>(sc => sc.Questions)
+                .WithMany(s => s.SurveyQuestions)
+                .HasForeignKey(sc => sc.QuestionId);
+    
 
             OnModelCreatingPartial(modelBuilder);
         }

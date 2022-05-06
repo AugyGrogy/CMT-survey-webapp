@@ -17,6 +17,7 @@
 	<None Remove="Views\StaffStartSurvey\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="Views\Staff\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\Roles\" />

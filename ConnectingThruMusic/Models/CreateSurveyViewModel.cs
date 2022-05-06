@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StaffMembers
+namespace StaffMembers.Models
 {
-    public class Survey
+    public class CreateSurveyViewModel
     {
 
-        public int SurveyID { get; set; }
-
         public string SurveyName { get; set; }
-
         public string SurveyType { get; set; }
+        public List <Questions> Questions { get; set; }
 
-        public IList<SurveyQuestions> SurveyQuestions { get; set; }
-
-    }
+}
 }
