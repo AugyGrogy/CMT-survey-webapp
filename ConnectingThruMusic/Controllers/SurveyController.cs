@@ -33,20 +33,9 @@ namespace StaffMembers.Controllers
 
         public async Task<IActionResult> Create(CreateSurveyViewModel model)
         {
-
-            if (ModelState.IsValid)
-           {
-                _context.Add(new Survey() { SurveyName });
-                    new Survey() {
-                    
-                    }
-
-
-               ;
+               _context.Add(model.ToEntity());
                await _context.SaveChangesAsync();
                return RedirectToAction(("CreateSurvey"));
-           }
-
         }
     }
 
