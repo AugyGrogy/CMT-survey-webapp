@@ -21,10 +21,10 @@
     <title>Create Survey</title>
 </head>
 
-<form asp-action="CreateSurvey" name="survey-form" style="margin: 0 auto; width: 500px; padding: 0; " class="text-center">
+<form asp-action="Create" name="survey-form" style="margin: 0 auto; width: 500px; padding: 0; " class="text-center">
 
     <label asp-for="SurveyName">Survey Name:</label><br />
-    <input asp-for="SurveyName" type="text" name="name" id="name" />
+    <input asp-for="SurveyName" type="text" name="SurveyName" id="SurveyName" />
     <span asp-validation-for="SurveyName" class="text-danger"></span>
 
 
@@ -75,7 +75,7 @@
                         @Html.DisplayFor(modelItem => item.QuestionText)
                     </td>
                     <td class="text-center">
-                        <input type="checkbox" name="Question" value="@item.QuestionId">
+                        <input type="checkbox"  id="SelectedQuestionId" name="SelectedQuestionId" value="@item.QuestionId">
                     </td>
                 </tr>
             }

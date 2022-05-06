@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffMembers.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace StaffMembers.Controllers
@@ -19,16 +16,10 @@ namespace StaffMembers.Controllers
 
         public async Task<IActionResult> Index ()
         {
-
-
-           
             return View(new CreateSurveyViewModel()
             {
                 Questions = await _context.Questions.ToListAsync()
             }) ;
-
-
-
         }
 
         public async Task<IActionResult> Create(CreateSurveyViewModel model)
