@@ -15,7 +15,7 @@ namespace StaffMembers.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.17")
+                .HasAnnotation("ProductVersion", "3.1.21")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -144,39 +144,36 @@ namespace StaffMembers.Migrations
             modelBuilder.Entity("StaffMembers.Questions", b =>
                 {
                     b.Property<int>("QuestionId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("questionID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AnswerA")
-                        .IsRequired()
                         .HasColumnName("AnswerA")
                         .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("AnswerB")
-                        .IsRequired()
                         .HasColumnName("AnswerB")
                         .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("AnswerC")
-                        .IsRequired()
                         .HasColumnName("AnswerC")
                         .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("AnswerD")
-                        .IsRequired()
                         .HasColumnName("AnswerD")
                         .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
                     b.Property<string>("AnswerE")
-                        .IsRequired()
                         .HasColumnName("AnswerE")
                         .HasColumnType("varchar(255)")
                         .HasMaxLength(255)
@@ -198,6 +195,7 @@ namespace StaffMembers.Migrations
                         .IsUnicode(false);
 
                     b.Property<string>("QuestionType")
+                        .IsRequired()
                         .HasColumnName("questionType")
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
@@ -258,6 +256,48 @@ namespace StaffMembers.Migrations
                     b.HasKey("RecipientID");
 
                     b.ToTable("RECIPIENT");
+                });
+
+            modelBuilder.Entity("StaffMembers.Sessions", b =>
+                {
+                    b.Property<int>("sessionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("sessionID")
+                        .HasColumnType("int")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("sessionName")
+                        .HasColumnName("sessionName")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.HasKey("sessionID");
+
+                    b.ToTable("SESSIONS");
+                });
+
+            modelBuilder.Entity("StaffMembers.Sites", b =>
+                {
+                    b.Property<int>("siteID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("siteID")
+                        .HasColumnType("int")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("siteName")
+                        .HasColumnName("siteName")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+
+                    b.HasKey("siteID");
+
+                    b.ToTable("SITES");
                 });
 
             modelBuilder.Entity("StaffMembers.Staff", b =>
