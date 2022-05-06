@@ -16,7 +16,7 @@ namespace StaffMembers
         [Key]
         public int QuestionId { get; set; }
         [Required(ErrorMessage = "Please enter a question")]
-        [Column(TypeName = "nvarchar(MAX)")]
+        [Column(TypeName = "varchar(8000)")]
         public string QuestionText { get; set; }
         [Required(ErrorMessage = "Please select a question type")]
         public string QuestionType { get; set; }
