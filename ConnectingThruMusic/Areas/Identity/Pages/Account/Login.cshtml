@@ -1,7 +1,9 @@
 ﻿@page
 @model LoginModel
 
-
+@{
+    Layout = "_LayoutLogin";
+}
 
 <h1>@ViewData["Title"]</h1>
 <body style="background-color:darkgrey;">
@@ -74,7 +76,7 @@
         </div>
     </section>
 
- </body>
+</body>
 
 
 
@@ -98,6 +100,6 @@
 
 
 
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
