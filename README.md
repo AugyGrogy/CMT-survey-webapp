@@ -1,6 +1,6 @@
 # CTM-survey-webapp
 
-This project is owned by Christopher Church, David Tovar, Estiphanos Demissie, and Tyler Grogg
+This project is owned by Christopher Church, David Tovar, Estiphanos Demissie, and Tyler Grogg, Michael Mann
 
 Application URL: https://csaa.azurewebsites.net/
 
