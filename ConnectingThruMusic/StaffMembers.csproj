@@ -27,25 +27,16 @@
 
   <ItemGroup>
     <None Remove="Models\" />
-    <None Remove="Views\Staff\" />
-    <None Remove="Views\Roles\" />
     <None Remove="Views\Shared\" />
     <None Remove="Views\StartQuiz\" />
-    <None Remove="Views\Signin\" />
 	<None Remove="Views\Question\" />
 	<None Remove="Views\Admin\" />
 	<None Remove="Views\Email\" />
 	<None Remove="Views\StaffStartSurvey\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Staff\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="Views\Roles\" />
     <Folder Include="Views\StaffStartSurvey\" />
-    <Folder Include="Views\Signin\" />
-	
-
-
 	<Folder Include="Views\Question\" />
 	<Folder Include="Views\StaffStartSurvey\" />
 	<Folder Include="Views\Shared\" />
