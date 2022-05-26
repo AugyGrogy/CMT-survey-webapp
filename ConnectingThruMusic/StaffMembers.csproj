@@ -6,11 +6,8 @@
 
   <ItemGroup>
     <None Remove="Models\" />
-    <None Remove="Views\Staff\" />
-    <None Remove="Views\Roles\" />
     <None Remove="Views\Shared\" />
     <None Remove="Views\StartQuiz\" />
-    <None Remove="Views\Signin\" />
 	<None Remove="Views\Question\" />
 	<None Remove="Views\Admin\" />
 	<None Remove="Views\Email\" />
@@ -20,12 +17,7 @@
     <Folder Include="Migrations\" />
     <Folder Include="Views\Staff\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="Views\Roles\" />
     <Folder Include="Views\StaffStartSurvey\" />
-    <Folder Include="Views\Signin\" />
-	
-
-
 	<Folder Include="Views\Question\" />
 	<Folder Include="Views\StaffStartSurvey\" />
 	<Folder Include="Views\Shared\" />
@@ -45,7 +37,7 @@
 	      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	    </PackageReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.21" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.21" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.21">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

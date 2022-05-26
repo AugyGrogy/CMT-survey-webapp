@@ -14,7 +14,27 @@ namespace StaffMembers.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index ()
+        public async Task<IActionResult> SurveyIndex()
+        {
+            return View(await _context.Survey.ToListAsync());
+        }
+
+        public async Task<IActionResult> SurveyDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var survey = await _context.Survey.FirstOrDefaultAsync(m => m.SurveyID == id);
+            if (survey == null)
+            {
+                return NotFound();
+            }
+            return View(survey);
+        }
+
+        public async Task<IActionResult> CreateSurvey ()
         {
             return View(new CreateSurveyViewModel()
             {
@@ -26,7 +46,7 @@ namespace StaffMembers.Controllers
         {
             _context.Add(model.ToEntity());
             await _context.SaveChangesAsync();
-            return RedirectToAction(("Index"));
+            return RedirectToAction(("SurveyIndex"));
         }
     }
 
