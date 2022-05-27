@@ -23,11 +23,19 @@ namespace StaffMembers
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #if DEBUG
+            services.AddDbContext<ctmsurveyContext>(options =>
+               options.UseSqlite("Data Source=CtmSurvey.db;"));
+
+            services.AddDbContext<CtmSurveyIdentityDbContext>(options =>
+                options.UseSqlite("Data Source=CtmSurvey.db;"));
+            #else
             services.AddDbContext<ctmsurveyContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<CtmSurveyIdentityDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));            
+            #endif
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<CtmSurveyIdentityDbContext>();
@@ -87,9 +95,14 @@ namespace StaffMembers
         }
         private static IConfiguration GetConfiguration()
         {
+
+            var jsonFileNameToLoad = "appsettings.Development.json";
+            #if DEBUG
+                jsonFileNameToLoad = "appsettings.local.json";
+            #endif
             return new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
+                .AddJsonFile(jsonFileNameToLoad, optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables().Build();
         }
 

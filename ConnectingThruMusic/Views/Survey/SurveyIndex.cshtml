@@ -1,3 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Index Survey";
+﻿@model IEnumerable<StaffMembers.Survey>
+
+@{
+    ViewData["Title"] = "SurveyIndex";
 }
+
+<h1>SurveyIndex</h1>
+
+<p>
+    <a asp-action="CreateSurvey">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SurveyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SurveyType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurveyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurveyType)
+            </td>
+            <td>
+                <a asp-action="SurveyDetails" asp-route-id="@item.SurveyID">Details</a>            
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
