@@ -10,15 +10,7 @@ namespace StaffMembers.Controllers
             return View();
         }
 
-        public IActionResult About()
-        {
-            return View();
-        }
-
-        public IActionResult Message()
-        {
-            return View();
-        }
+        
         public IActionResult AddRecipient()
         {
             return View();

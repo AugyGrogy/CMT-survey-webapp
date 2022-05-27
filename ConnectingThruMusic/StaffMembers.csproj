@@ -5,47 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20220201221925_ChangedQuestionTable.cs" />
-    <Compile Remove="Migrations\20220201221925_ChangedQuestionTable.Designer.cs" />
-    <Compile Remove="Migrations\20220228161426_RecipientMigration.cs" />
-    <Compile Remove="Migrations\20220228161426_RecipientMigration.Designer.cs" />
-    <Compile Remove="Migrations\20220228152607_Test.cs" />
-    <Compile Remove="Migrations\20220228152607_Test.Designer.cs" />
-    <Compile Remove="Migrations\20220228164506_RecipientMigration.cs" />
-    <Compile Remove="Migrations\20220228164506_RecipientMigration.Designer.cs" />
-    <Compile Remove="Migrations\20220325203726_Survey.cs" />
-    <Compile Remove="Migrations\20220325203726_Survey.Designer.cs" />
-    <Compile Remove="Migrations\20220325203845_Survey.cs" />
-    <Compile Remove="Migrations\20220325203845_Survey.Designer.cs" />
-    <Compile Remove="Migrations\20220325204234_Survey.cs" />
-    <Compile Remove="Migrations\20220325204234_Survey.Designer.cs" />
-    <Compile Remove="Migrations\20220325204653_Survey.cs" />
-    <Compile Remove="Migrations\20220325204653_Survey.Designer.cs" />
-    <Compile Remove="Migrations\20220325205625_Initial.cs" />
-    <Compile Remove="Migrations\20220325205625_Initial.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Models\" />
-    <None Remove="Views\Staff\" />
-    <None Remove="Views\Roles\" />
     <None Remove="Views\Shared\" />
     <None Remove="Views\StartQuiz\" />
-    <None Remove="Views\Signin\" />
 	<None Remove="Views\Question\" />
 	<None Remove="Views\Admin\" />
 	<None Remove="Views\Email\" />
 	<None Remove="Views\StaffStartSurvey\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="Views\Staff\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="Views\Roles\" />
     <Folder Include="Views\StaffStartSurvey\" />
-    <Folder Include="Views\Signin\" />
-	
-
-
 	<Folder Include="Views\Question\" />
 	<Folder Include="Views\StaffStartSurvey\" />
 	<Folder Include="Views\Shared\" />
@@ -65,6 +37,7 @@
 	      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	    </PackageReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.21" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.21">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

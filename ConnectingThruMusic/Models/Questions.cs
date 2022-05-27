@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,10 +15,11 @@ namespace StaffMembers
     {
         [Key]
         public int QuestionId { get; set; }
-        public string QuestionText { get; set; }
         [Required(ErrorMessage = "Please enter a question")]
-        public string QuestionType { get; set; }
+        [Column(TypeName = "varchar(8000)")]
+        public string QuestionText { get; set; }
         [Required(ErrorMessage = "Please select a question type")]
+        public string QuestionType { get; set; }
         public string AnswerA { get; set; }
         public string AnswerB { get; set; }
         public string AnswerC { get; set; }
@@ -25,6 +27,7 @@ namespace StaffMembers
         public string AnswerE { get; set; }
         public DateTime? EffectiveDate { get; set; }
         public DateTime? ExpirationDate { get; set; }
-        
+        public IList<SurveyQuestions> SurveyQuestions { get; set; }
+
     }
 }

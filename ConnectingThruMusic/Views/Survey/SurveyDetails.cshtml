@@ -1,0 +1,32 @@
+﻿@model StaffMembers.Survey
+
+@{
+    ViewData["Title"] = "SurveyDetails";
+}
+
+<h1>Survey Details</h1>
+
+<div>
+    <h4>Survey</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SurveyName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SurveyName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SurveyType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SurveyType)
+        </dd>
+    </dl>
+</div>
+<div>
+    <!--Look into if this needs to be implemented per the agreement with the customer
+    <a asp-action="Edit" asp-route-id="@Model.SurveyID">Edit</a> |
+    -->
+    <a asp-action="SurveyIndex">Back to List</a>
+</div>

@@ -14,9 +14,7 @@ namespace StaffMembers
 
         public string SurveyType { get; set; }
 
-        public List<Questions> Questions { get; set; }
-
-        public List<Answers> Answers { get; set; }
+        public IList<SurveyQuestions> SurveyQuestions { get; set; }
 
     }
 }
