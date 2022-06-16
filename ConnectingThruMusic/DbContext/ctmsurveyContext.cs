@@ -20,6 +20,10 @@ namespace StaffMembers
         {
         }
 
+        public ctmsurveyContext()
+        {
+        }
+
         public virtual DbSet<Answers> Answers { get; set; }
         public virtual DbSet<Instructor> Instructor { get; set; }
         public virtual DbSet<InstructorSurveyResponses> InstructorSurveyResponses { get; set; }

@@ -1,0 +1,32 @@
+﻿@model StaffMembers.Models.DisplaySurveyViewModel
+
+@{ 
+    ViewData["TItle"] = "Survey";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width = device-width" />
+    </head>
+    <body>
+        <h1>@Html.DisplayFor(model => StaffMembers.Models.DisplaySurveyViewModel.Survey)</h1>
+        <form>
+            <table>
+                @foreach (var question in Model.SurveyQuestions)
+                {
+                <tr>
+                    <td>@question.QuestionText</td>
+                </tr>
+                <tr>
+                    <td>@question.AnswerA</td>
+                    <td>@question.AnswerB</td>
+                    <td>@question.AnswerC</td>
+                    <td>@question.AnswerD</td>
+                    <td>@question.AnswerE</td>
+                </tr>
+                }
+            </table>
+        </form>
+    </body>
+</html>
