@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffMembers.Models;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace StaffMembers.Controllers
@@ -48,7 +49,35 @@ namespace StaffMembers.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(("SurveyIndex"));
         }
-    }
 
-   
+        public async Task<IActionResult> SurveyResponse(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var survey = await _context.Survey.FirstOrDefaultAsync(m => m.SurveyID == id);
+            if (survey == null)
+            {
+                return NotFound();
+            }
+            return View(survey);
+        }
+
+        public async Task<IActionResult> DisplaySurvey(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var survey = await _context.Survey.Where(c => c.SurveyID == id.Value).Include(i => i.SurveyQuestions).ThenInclude(i => i.Questions).SingleOrDefaultAsync();
+
+            if (survey == null)
+            {
+                return NotFound();
+            }
+            return View(survey);
+        }
+    }
 }

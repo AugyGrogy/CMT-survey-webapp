@@ -20,14 +20,20 @@
     <Folder Include="Views\StaffStartSurvey\" />
 	<Folder Include="Views\Question\" />
 	<Folder Include="Views\StaffStartSurvey\" />
-	<Folder Include="Views\Shared\" />
 	<Folder Include="Views\Question\" />
 
 	<Folder Include="Views\StaffStartSurvey\" />
-	<Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Areas\Identity\Pages\Account\Login.cshtml" />
+    <None Include="Areas\Identity\Pages\Account\Register.cshtml" />
+    <None Include="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+    <None Include="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+    <None Include="Areas\Identity\Pages\_ViewImports.cshtml" />
+    <None Include="Areas\Identity\Pages\_ViewStart.cshtml" />
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.21" />

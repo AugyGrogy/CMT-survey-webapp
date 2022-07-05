@@ -9,7 +9,7 @@ namespace StaffMembers.Models
         public string SurveyName { get; set; }
         public string SurveyType { get; set; }
         public List <Questions> Questions { get; set; }
-        public List<int> SelectedQuestionId {get; set;}
+        public List<int> SelectedQuestionId { get; set; }
 
     
         public Survey ToEntity() {

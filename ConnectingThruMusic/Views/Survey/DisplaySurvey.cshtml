@@ -1,32 +1,87 @@
-﻿@model StaffMembers.Models.DisplaySurveyViewModel
-
-@{ 
+﻿@model StaffMembers.Survey
+@{
     ViewData["TItle"] = "Survey";
 }
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width = device-width" />
-    </head>
-    <body>
-        <h1>@Html.DisplayFor(model => StaffMembers.Models.DisplaySurveyViewModel.Survey)</h1>
-        <form>
-            <table>
-                @foreach (var question in Model.SurveyQuestions)
-                {
-                <tr>
-                    <td>@question.QuestionText</td>
-                </tr>
-                <tr>
-                    <td>@question.AnswerA</td>
-                    <td>@question.AnswerB</td>
-                    <td>@question.AnswerC</td>
-                    <td>@question.AnswerD</td>
-                    <td>@question.AnswerE</td>
-                </tr>
-                }
-            </table>
-        </form>
-    </body>
-</html>
+
+<head>
+    <meta name="viewport" content="width = device-width" />
+</head>
+
+<form asp-action="DisplaySurvey" name="survey-form" style="margin: 0 auto; width: 500px; padding: 0; " class="text-center">
+
+
+
+    @Html.DisplayFor(model => model.SurveyName)
+
+    <br />
+
+    @foreach (var item in Model.SurveyQuestions)
+    {
+        @if (item.Questions.QuestionType == "MC")
+        {
+            <br />
+            <p>
+                @Html.DisplayFor(modelItem => item.Questions.QuestionText)
+            </p>
+
+
+            <input type="radio" id="answerA" />
+            <label for="answerA">
+                @Html.DisplayFor(modelItem => item.Questions.AnswerA)
+            </label>
+
+            <input type="radio" id="answerB" />
+            <label for="answerB">
+                @Html.DisplayFor(modelItem => item.Questions.AnswerB)
+            </label>
+
+            <input type="radio" id="answerC" />
+            <label for="answerC">
+                @Html.DisplayFor(modelItem => item.Questions.AnswerC)
+            </label>
+
+            <input type="radio" id="answerD" />
+            <label for="answerD">
+                @Html.DisplayFor(modelItem => item.Questions.AnswerD)
+            </label>
+
+            <input type="radio" id="answerE" />
+            <label for="answerE">
+                @Html.DisplayFor(modelItem => item.Questions.AnswerE)
+            </label>
+
+            <br />
+        }
+        @if (item.Questions.QuestionType == "TF")
+        {
+            <br />
+            <p>
+                @Html.DisplayFor(modelItem => item.Questions.QuestionText)
+            </p>
+
+            <input type="radio" id="true" />
+            <label for="true">True</label>
+
+            <input type="radio" id="false" />
+            <label for="false">False</label>
+
+            <br />
+        }
+        @if (item.Questions.QuestionType == "FR")
+        {
+            <br />
+            <p>
+                @Html.DisplayFor(modelItem => item.Questions.QuestionText)
+            </p>
+
+            <input type="text" id="FR" />
+
+            <br />
+        }
+
+    }
+    <br />
+    <input type="submit" value="Submit" />
+</form>
